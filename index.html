@@ -449,7 +449,10 @@
 
     <!-- 隱藏欄位：送到 Zoho Desk 的多行自訂欄位 -->
     <textarea name="Product_Details" id="Product_Details" style="display:none;"></textarea>
-<textarea name="Description" id="Description" style="display:none;"></textarea>
+<input type="hidden" name="Model" id="zModel" value="" />
+<input type="hidden" name="SN" id="zSN" value="" />
+<input type="hidden" name="Qty" id="zQty" value="" />
+<input type="hidden" name="FailureCode" id="zFailureCode" value="" />
 
   </td>
 </tr>   
@@ -514,7 +517,6 @@
   const prodRows = document.getElementById('prodRows');
   const addRowBtn = document.getElementById('addRow');
   const hidden = document.getElementById('Product_Details');
- const hiddenDesc = document.getElementById('Description');
 
   if(!form || !prodRows || !addRowBtn || !hidden) return;
 

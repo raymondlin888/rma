@@ -1,1 +1,587 @@
-<!DOCTYPE html><html><head><META HTTP-EQUIV='content-type' CONTENT='text/html; charset=UTF-8'><style> #zohoSupportWebToCase textarea, #zohoSupportWebToCase input[type='text'], #zohoSupportWebToCase input[type='date'], #zohoSupportWebToCase select, .wb_common{width: 280px;}#zohoSupportWebToCase td {padding: 11px 5px;}#zohoSupportWebToCase textarea, #zohoSupportWebToCase input[type='text'], #zohoSupportWebToCase input[type='date'], #zohoSupportWebToCase select{border: 1px solid #ddd;padding: 3px 5px;border-radius: 3px;}#zohoSupportWebToCase select {box-sizing: unset}#zohoSupportWebToCase .wb_selectDate {width: auto}#zohoSupportWebToCase input.wb_cusInput {width: 108px}.wb_FtCon{display: flex;align-items: center;justify-content: flex-end;margin-top: 15px;padding-left: 10px}.wb_logoCon{display: flex;margin-left: 5px}.wb_logo{max-width: 16px;max-height: 16px;}#zohoSupportWebToCase .wb_multi_pick {border: 1px solid #ddd;padding: 3px 5px;border-radius: 3px;width: 280px;height: 95px;overflow-y:auto;}#zohoSupportWebToCase .wb_multi_pick_label {display: block;}#zohoSupportWebToCase .wb_multi_pick_input,  .wb_multi_pick_input_all{vertical-align: middle;margin-right: 5px;}.zsFormClass{background-color:#FFFFFF;width:600px} </style><style>.zsFontClass{color:#000000;font-family:Arial;font-size:13px}</style> <style>.manfieldbdr{border-left: 1px solid #ff6448!important} .hleft{text-align:left;} input[type=file]::-webkit-file-upload-button{cursor:pointer;}.wtcsepcode{margin:0px 15px; color:#aaa; float:left;}.wtccloudattach{float:left; color:#00a3fe!important; cursor:pointer; text-decoration: none!important;}.wtccloudattach:hover{text-decoration: none!important;}.wtcuploadinput{cursor:pointer; float:left; width:62px; margin-top:-20px; opacity:0; clear:both;}.wtcuploadfile{float:left;color: #00a3fe;}.filenamecls{margin-right:15px; float:left; margin-top:5px;} .clboth{clear:both;} #zsFileBrowseAttachments{clear:both; margin:5px 0px 10px;} .zsFontClass{vertical-align:top;} #tooltip-zc{font: normal 12px Arial, Helvetica, sans-serif; line-height:18px;position:absolute;padding:8px;margin:20px 0 0;background:#fff;border:1px solid #528dd1;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;color:#eee;-webkit-box-shadow:5px 5px 20px rgba(0,0,0,0.2);-moz-box-shadow:5px 5px 20px rgba(0,0,0,0.2);z-index:10000; color:#777}.wtcmanfield{color:#f00;font-size:16px;position:relative;top:2px;left:1px;} #zsCloudAttachmentIframe{width: 100%;height: 100%;z-index: 99999!important;position: fixed;left: 0px;top:0px; border-style: none; display: none; background-color:#fff;} .wtchelpinfo{background-position: -246px -485px;width:15px;height:15px;display:inline-block;position: relative;top: 2px;background-image: url(https://static.zohocdn.com/zohodeskstatic/app/images/zs-mpro.b6c9cf2347c62390fdcb.png);} .zsMaxSizeMessage{font-size:13px;}</style><script src='https://static.zohocdn.com/zohodeskstatic/app/js/jqueryandencoder.ef05974972bf3bca1b87.js'></script><script>window.addEventListener('pageshow', function () {const submitButton = document.getElementById('zsSubmitButton_1261370000000508537');if (submitButton) {  submitButton.removeAttribute('disabled');}const captchaTextField = document.forms['zsWebToCase_1261370000000508537']['zsWebFormCaptchaWord'];if(window.zsRegenerateCaptcha && captchaTextField.value) {captchaTextField.value = '';captchaTextField.focus();zsRegenerateCaptcha();}});function trimBoth(str){return jQuery.trim(str);}function setAllDependancyFieldsMapping(){var mapDependancyLabels = getMapDependenySelectValues(jQuery("[id='property(module)']").val(), "JSON_MAP_DEP_LABELS");if(mapDependancyLabels){for(var i = 0; i < mapDependancyLabels.length; i++){var label = mapDependancyLabels[i];var obj = document.forms['zsWebToCase_1261370000000508537'][label];if(obj){setDependent(obj, true);}}}}function getMapDependenySelectValues(module, key){var dependencyObj = jQuery.parseJSON( jQuery("[id='dependent_field_values_" + module + "']").val() );if(dependencyObj == undefined){return dependencyObj;}return dependencyObj[key];}function setDependent(obj, isload){var name = obj.id || (obj[0] && obj[0].id) || "";var module = jQuery("[id='property(module)']").val();var val = "";var myObject = getMapDependenySelectValues(module, "JSON_VALUES");if(myObject !=undefined){val = myObject[name];}var mySelObject = getMapDependenySelectValues(module, "JSON_SELECT_VALUES");if(val != null && val != "" && val != "null" && mySelObject){var fields = val;for(var i in fields){if (fields.hasOwnProperty(i)){var isDependent = false;var label = i;var values = fields[i];if(label.indexOf(")") > -1){label = label.replace(/\)/g, '_____');}if(label.indexOf("(") > -1){label = label.replace(/\(/g, '____');}if(label.indexOf(".") > -1){label = label.replace(/\./g, '___');}var depObj = document.forms['zsWebToCase_1261370000000508537'][label];if(depObj && depObj.options){var mapValues = "";var selected_val = depObj.value;var depLen = depObj.options.length-1;for (var n = depLen; n >= 0; n--) {if (depObj.options[n].selected){if(mapValues == ""){mapValues = depObj.options[n].value;}else{mapValues = mapValues + ";;;"+depObj.options[n].value;}}}depObj.value = "";var selectValues = mySelObject[label];for(var k in values){var rat = k;if(rat == "-None-"){rat = "";}var parentValues = mySelObject[name];if(rat == trimBoth(obj.value)){isDependent = true;depObj.length = 0;var depvalues = values[k];var depLen = depvalues.length - 1;for(var j = 0; j <= depLen; j++){var optionElement = document.createElement("OPTION");var displayValue = depvalues[j];var actualValue = displayValue;if(actualValue == "-None-"){optionElement.value = "";displayValue = "-None-";}else{optionElement.value = actualValue;}optionElement.text = displayValue;if(mapValues != undefined){var mapValue = mapValues.split(";;;");var len = mapValue.length;for(var p = 0; p < len; p++){if(actualValue == mapValue[p]){optionElement.selected = true;}}}depObj.options.add(optionElement);}}}if(!isDependent){depObj.length = 0;var len = selectValues.length;for(var j = 0; j < len; j++){var actualValue = selectValues[j];var optionElement = document.createElement("OPTION");if(actualValue == "-None-"){optionElement.value = "";}else{optionElement.value = selectValues[j];}optionElement.text = selectValues[j];depObj.options.add(optionElement);}depObj.value =  selected_val;}if(!isload){setDependent(depObj,false);}var jdepObj = jQuery(depObj);if(jdepObj.hasClass('select2-offscreen')){jdepObj.select2("val", jdepObj.val());}}}}}}function setSelectAll(id){var parentElement = document.getElementById(id);var hiddenInput = parentElement.querySelector('#hiddenoptions');var selectAllElement = parentElement.querySelector('#selectall' + id);var selectedValues = [];var checkboxes = parentElement.querySelectorAll('.wb_multi_pick_input');checkboxes.forEach(function (cb) {cb.checked = selectAllElement.checked;if (cb.checked && cb.value) {selectedValues.push(cb.value);}});hiddenInput.value = selectedValues.join(',');}function setMultiSelectOption(id, obj){var parentElement = document.getElementById(id);var hiddenInput = parentElement.querySelector('#hiddenoptions');var selectAllElement = parentElement.querySelector('#selectall' + id);var selectedStr = hiddenInput.value;var selectedValues = selectedStr ? selectedStr.split(',') : [];if(obj.checked && obj.value) {selectedValues.push(obj.value);}else if(!obj.checked && obj.value) {selectedValues.splice(selectedValues.indexOf(obj.value), 1);selectAllElement.checked = false;}else {selectAllElement.checked = false;}hiddenInput.value = selectedValues.join(',');}var zctt = function(){var tt, mw = 400, top = 10, left = 0, doctt = document;var ieb = doctt.all ? true : false;return{showtt: function(cont, wid){if(tt == null){tt = doctt.createElement('div');tt.setAttribute('id', 'tooltip-zc');doctt.body.appendChild(tt);doctt.onmousemove = this.setpos;doctt.onclick = this.hidett;}tt.style.display = 'block';tt.innerHTML = cont;tt.style.width = wid ? wid + 'px' : 'auto';if(!wid && ieb){tt.style.width = tt.offsetWidth;}if(tt.offsetWidth > mw){tt.style.width = mw + 'px'}h = parseInt(tt.offsetHeight) + top;w = parseInt(tt.offsetWidth) + left;},hidett: function(){tt.style.display = 'none';},setpos: function(e){var u = ieb ? event.clientY + doctt.body.scrollTop : e.pageY;var l = ieb ? event.clientX + doctt.body.scrollLeft : e.pageX;var cw = doctt.body.clientWidth;var ch = doctt.body.clientHeight;if(l < 0){tt.style.left = left + 'px';tt.style.right = '';}else if((l+w+left) > cw){tt.style.left = '';tt.style.right = ((cw-l) + left) + 'px';}else{tt.style.right = '';tt.style.left = (l + left) + 'px';}if(u < 0){tt.style.top = top + 'px';tt.style.bottom = '';}else if((u + h + left) > ch){tt.style.top = '';tt.style.bottom = ((ch - u) + top) + 'px';}else{tt.style.bottom = '';tt.style.top = (u + top) + 'px';}}};}();var zsWebFormMandatoryFields = new Array("Contact Name","Email","Subject");var zsFieldsDisplayLabelArray = new Array("姓","郵件","主題");function reformatAllDateFields() {const dateFields = document.querySelectorAll('.dob-field');dateFields.forEach(field => {if (field.value && field.value.includes('-')) {const parts = field.value.split('-');if (parts.length === 3) {const [yyyy, mm, dd] = parts;field.type= 'text';field.value = `${dd}/${mm}/${yyyy}`;}}});}function zsValidateMandatoryFields(){var name = '';var email = '';var isError = 0;for(var index = 0; index < zsWebFormMandatoryFields.length; index++){isError = 0;var fieldObject = document.forms['zsWebToCase_1261370000000508537'][zsWebFormMandatoryFields[index]];if(fieldObject){if(((fieldObject.value).replace(/^\s+|\s+$/g, '')).length == 0){alert(zsFieldsDisplayLabelArray[index] +' 不能為空 ');fieldObject.focus();isError = 1;return false;}else{if(fieldObject.name == 'Email'){if(!fieldObject.value.match(/^([\w_][\w\-_.+\'&]*)@(?=.{4,256}$)(([\w]+)([\-_]*[\w])*[\.])+[a-zA-Z]{2,22}$/)){isError = 1;alert('輸入一個有效的郵箱Id');fieldObject.focus();return false;}}}if(fieldObject.nodeName == 'SELECT'){if(fieldObject.options[fieldObject.selectedIndex].value == '-None-'){alert(zsFieldsDisplayLabelArray[index] +' 不能為空');fieldObject.focus();isError = 1;return false;}}if(fieldObject.type == 'checkbox'){if (fieldObject.checked == false){alert('請接受 '+zsFieldsDisplayLabelArray[index]);fieldObject.focus();isError = 1;return false;}}}}if(isError == 0){if(document.forms['zsWebToCase_1261370000000508537']['zsWebFormCaptchaWord'].value.replace(/^\s+|\s+$/g, '').length == 0){alert('請輸入驗證碼。');document.forms['zsWebToCase_1261370000000508537']['zsWebFormCaptchaWord'].focus();return false;}}if(isError == 0){reformatAllDateFields();document.getElementById('zsSubmitButton_1261370000000508537').setAttribute('disabled', 'disabled');}}var ZSEncoder = {encodeForHTML : function(str){if(str && typeof(str)==='string'){return jQuery.encoder.encodeForHTML(str);}return str;},encodeForHTMLAttribute : function(str) {if(str && typeof(str)==='string'){return jQuery.encoder.encodeForHTMLAttribute(str);}return str;},encodeForJavascript : function(str) {if(str && typeof(str)==='string'){return jQuery.encoder.encodeForJavascript(str);}return str;},encodeForCSS : function(str) {if(str && typeof(str)==='string'){return jQuery.encoder.encodeForCSS(str);}return str;}};var zsAttachedAttachmentsCount = 0;var zsAllowedAttachmentLimit = 4;var zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];function zsOpenCloudPickerIframe(){if(zsAttachedAttachmentsCount < 5){var zsCloudPickerIframeSrc = jQuery('#zsCloudPickerIframeSrc').val();jQuery('#zsCloudAttachmentIframe').attr('src', zsCloudPickerIframeSrc.substring(0, zsCloudPickerIframeSrc.length - 1) + (5 - zsAttachedAttachmentsCount)).show();zsListenCloudPickerMessages();}}function zsListenCloudPickerMessages(){if(window.addEventListener){window.addEventListener('message', zsWebReceiveMessage, false);}else if(window.attachEvent){window.attachEvent('onmessage', zsWebReceiveMessage);}}var zsCloudPickerJSON = {};function zsWebReceiveMessage(event){var zsUrlRegex = /^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\:\'\/\\+=&amp;%\$#_]*)?$/;if(zsUrlRegex.test(event.origin)){var zsMessageType = event.data.split('&&&');if(zsMessageType[0] == 'zsCloudPickerMessage'){if(window.addEventListener){window.removeEventListener('message', zsWebReceiveMessage, false);}else if(window.attachEvent){window.detachEvent('onmessage', zsWebReceiveMessage );}jQuery('#zsCloudAttachmentIframe').hide();var isAttachedFilesDetails = zsMessageType[1].split('|||');if(isAttachedFilesDetails[0] == 'cloudPickerResponse'){var zsCloudPickerAttachmentDetails = isAttachedFilesDetails[1].split('::::');var zsCloudPickerAttachmentsJSON = jQuery.parseJSON(zsCloudPickerAttachmentDetails[0]);if(zsAttachedAttachmentsCount <= zsAllowedAttachmentLimit){zsRenderCloudAttachments(zsCloudPickerAttachmentsJSON);}else{alert('您無法附加超過5個以上的檔');return false;}}}}}function zsRenderCloudAttachments(zsCloudPickerAttachmentsJSON){if(!jQuery.isEmptyObject(zsCloudPickerAttachmentsJSON)){jQuery.each(zsCloudPickerAttachmentsJSON, function(cloudServiceName, attachments){var zsAttachmentsArray = [];if(!jQuery.isEmptyObject(zsCloudPickerJSON[cloudServiceName])){zsAttachmentsArray = zsCloudPickerJSON[cloudServiceName];}for(var attachmentsIndex = 0; attachmentsIndex < attachments.length; attachmentsIndex++){if(zsAttachedAttachmentsCount <= zsAllowedAttachmentLimit){var zsCloudAttachmentsList = '';var attachmentsDetailJSON = attachments[attachmentsIndex];var zsCloudAttachmentName = attachmentsDetailJSON['docName'];var extension = zsCloudAttachmentName.split('.').pop().toLowerCase();var unSupportedExtensions = ["ade","adp","apk","appx","appxbundle","bat","cab","cer","chm","cmd","com","cpl","dll","dmg","exe","hlp","hta","ins","iso","isp","jar","js","jse","lnk","mde","msc","msi","msix","msixbundle","msp","mst","nsh","pif","ps1","pst","reg","scr","sct","shb","sys","tmp","url","vb","vbe","vbs","vxd","wsc","wsf","wsh","terminal"];if(unSupportedExtensions.indexOf(extension)!=-1){alert("該檔未附加，因為其副檔名不受支援。");continue;}zsAttachedAttachmentsCount = zsAttachedAttachmentsCount + 1;var zsCloudAttachmentId = attachmentsDetailJSON['docId'];zsCloudAttachmentId = zsCloudAttachmentId.replace(/\s/g, '');zsCloudAttachmentsList = '<div class="filenamecls zsFontClass">'+ZSEncoder.encodeForHTML(zsCloudAttachmentName)+'<a id="'+ ZSEncoder.encodeForHTMLAttribute(zsCloudAttachmentId) +'" cloudservice="'+ ZSEncoder.encodeForHTMLAttribute(cloudServiceName) +'" class="zscloudAttachment" style="margin-left:10px;" href="javascript:;">X</a> </div>';jQuery('#zsFileBrowseAttachments').append(zsCloudAttachmentsList);zsAttachmentsArray.push(attachmentsDetailJSON);zsCloudPickerJSON[cloudServiceName] = zsAttachmentsArray;jQuery("input[name='zsCloudPickerAttachments']")[0].value = JSON.stringify(zsCloudPickerJSON);}}});}zsChangeMousePointer();}jQuery(document).off('click.cAtm').on('click.cAtm','.zscloudAttachment', function(){var cloudService = jQuery(this).attr('cloudservice');var cloudAttachmentId = jQuery(this).attr('id');var zsCloudAttachmentsArr = zsCloudPickerJSON[cloudService];var isZsCloudAttachmentRemoved = 0;for(var attachmentsIndex = 0; attachmentsIndex < zsCloudAttachmentsArr.length; attachmentsIndex++){if(isZsCloudAttachmentRemoved != 1){jQuery.each(zsCloudAttachmentsArr[attachmentsIndex], function(attachmentsDetailJsonKey, attachmentsDetailJsonValue){if(attachmentsDetailJsonKey == 'docId' && attachmentsDetailJsonValue.replace(/\s/g, '') == cloudAttachmentId){var zsAttachmentToBeRemoved = jQuery.inArray(zsCloudAttachmentsArr[attachmentsIndex], zsCloudAttachmentsArr);zsCloudAttachmentsArr.splice(zsAttachmentToBeRemoved, 1);isZsCloudAttachmentRemoved = 1;}});}}jQuery(this).parent().remove();zsAttachedAttachmentsCount = zsAttachedAttachmentsCount - 1;jQuery("input[name='zsCloudPickerAttachments']")[0].value = JSON.stringify(zsCloudPickerJSON);zsChangeMousePointer();});function zsRenderBrowseFileAttachment(zsAttachmentObject, zsAttachmentDetails){if(zsAttachmentObject != ''){if((zsAttachmentDetails.files && (zsAttachmentDetails.files[0].size/(1024*1024))>20)){zsAttachmentDetails.value='';alert('允許的檔大小上限為20MB。');return;}if(zsAttachedAttachmentsCount < 5){var zsFileName='';if((zsAttachmentObject.indexOf('\\') > -1)){var zsAttachmentDataSplits = zsAttachmentObject.split('\\');var zsAttachmentDataSplitsLen = zsAttachmentDataSplits.length;zsFileName = zsAttachmentDataSplits[zsAttachmentDataSplitsLen - 1];}else{zsFileName = zsAttachmentObject;}var extension = zsFileName.split('.').pop().toLowerCase();var unSupportedExtensions = ["ade","adp","apk","appx","appxbundle","bat","cab","cer","chm","cmd","com","cpl","dll","dmg","exe","hlp","hta","ins","iso","isp","jar","js","jse","lnk","mde","msc","msi","msix","msixbundle","msp","mst","nsh","pif","ps1","pst","reg","scr","sct","shb","sys","tmp","url","vb","vbe","vbs","vxd","wsc","wsf","wsh","terminal"];if(unSupportedExtensions.indexOf(extension)!=-1){alert("該檔未附加，因為其副檔名不受支援。");return;}var zsCurrentAttachmentIdTokens = jQuery(zsAttachmentDetails).attr('id').split('_');var zsCurrentAttachmentId = parseInt(zsCurrentAttachmentIdTokens[1]);var zsAttachmentIdToBeRemoved = jQuery.inArray(zsCurrentAttachmentId, zsAttachmentFileBrowserIdsList);zsAttachmentFileBrowserIdsList.splice(zsAttachmentIdToBeRemoved, 1);var zsNextAttachmentId = zsAttachmentFileBrowserIdsList[0];var zsnextAttachment = 'zsattachment_'+zsNextAttachmentId;jQuery('#zsattachment_'+zsCurrentAttachmentId).hide();jQuery('#'+zsnextAttachment).show();jQuery('#zsFileBrowseAttachments').append('<div class="filenamecls zsFontClass" id="file_'+zsCurrentAttachmentId+'">'+ ZSEncoder.encodeForHTML(zsFileName) + '<a class="zsfilebrowseAttachment" style="margin-left:10px;" href="javascript:;" id="fileclose_'+zsCurrentAttachmentId+'">X</a></div>');zsAttachedAttachmentsCount = zsAttachedAttachmentsCount + 1;}}zsChangeMousePointer();}jQuery(document).off('click.fba').on('click.fba', '.zsfilebrowseAttachment', function(){var currentlyDeletedElement = jQuery(this).attr('id').split('_')[1];jQuery('#zsattachment_'+currentlyDeletedElement).val('');jQuery('#zsattachment_'+currentlyDeletedElement).replaceWith(jQuery('#zsattachment_'+currentlyDeletedElement).clone());jQuery(this).parent().remove();zsAttachedAttachmentsCount = zsAttachedAttachmentsCount - 1;zsAttachmentFileBrowserIdsList.push(parseInt(currentlyDeletedElement));zsRearrangeFileBrowseAttachments();zsChangeMousePointer();});function zsRearrangeFileBrowseAttachments(){jQuery.each(jQuery('input[type = file]'), function(fileIndex, fileObject){fileIndex = fileIndex + 1;if(fileIndex == zsAttachmentFileBrowserIdsList[0]){jQuery('#zsattachment_'+fileIndex).show();}else{jQuery('#zsattachment_'+fileIndex).hide();}});}function zsOpenFileBrowseAttachment(clickEvent){if(zsAttachedAttachmentsCount >= 5){clickEvent.preventDefault();}}function zsChangeMousePointer(){if(zsAttachedAttachmentsCount >= 5){jQuery('#zsMaxLimitMessage').show();jQuery('#zsattachment_1,#zsattachment_2,#zsattachment_3,#zsattachment_4,#zsattachment_5').hide();jQuery('#zsBrowseAttachment,#zsCloudAttachment').css('cursor', 'default');}else{jQuery('#zsMaxLimitMessage').hide();zsRearrangeFileBrowseAttachments();jQuery('#zsBrowseAttachment,#zsCloudAttachment').css('cursor', 'pointer');}}function zsShowCaptcha(){jQuery('#zsCaptchaLoading').hide();jQuery('#zsCaptcha').show();}function zsRegenerateCaptcha(){var webFormxhr = {};webFormxhr = new XMLHttpRequest();webFormxhr.open('GET','https://desk.zoho.com/support/GenerateCaptcha?action=getNewCaptcha&_='+new Date().getTime(),true);webFormxhr.onreadystatechange = function () {if(webFormxhr.readyState === 4 && webFormxhr.status === 200) {try{ var response = (webFormxhr.responseText != null) ? JSON.parse(webFormxhr.responseText) : ''; jQuery('#zsCaptchaUrl').load(zsShowCaptcha);document.getElementById('zsCaptchaUrl').src = response.captchaUrl;document.getElementsByName('xJdfEaS')[0].value = response.captchaDigest;}catch(e){}}};webFormxhr.send();}document.addEventListener('readystatechange',function(){if(document.readyState === 'complete' && window.zsRegenerateCaptcha ){zsRegenerateCaptcha();}setAllDependancyFieldsMapping();document.getElementById('zsSubmitButton_1261370000000508537').removeAttribute('disabled');zsAttachedAttachmentsCount = 0;zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];document.forms['zsWebToCase_1261370000000508537']['zsWebFormCaptchaWord'].value = '';jQuery('#zsFileBrowseAttachments').html('');jQuery.each(jQuery('input[type = file]'), function(fileIndex, fileObject){var zsAttachmentId = jQuery(fileObject).attr('id');var zsAttachmentNo = zsAttachmentId.split('_')[1];var zsAttachedFile = jQuery('#zsattachment_'+zsAttachmentNo);if(zsAttachedFile[0] != undefined && zsAttachedFile[0].files[0] != undefined){var zsFileBrowserAttachmentHtml = '';zsAttachedFileName = zsAttachedFile[0].files[0].name;zsFileBrowserAttachmentHtml = '<div class="filenamecls zsFontClass" id="file_'+zsAttachmentNo+'">'+ ZSEncoder.encodeForHTML(zsAttachedFileName) +'<a class="zsfilebrowseAttachment" style="margin-left:10px" href="javascript:;" id="fileclose_'+zsAttachmentNo+'">X</a></div>';jQuery('#zsFileBrowseAttachments').append(zsFileBrowserAttachmentHtml);zsAttachedAttachmentsCount = zsAttachedAttachmentsCount + 1;var zsAttachmentIdToBeRemoved = jQuery.inArray(parseInt(zsAttachmentNo), zsAttachmentFileBrowserIdsList);zsAttachmentFileBrowserIdsList.splice(zsAttachmentIdToBeRemoved, 1);}});if(document.forms['zsWebToCase_1261370000000508537']['zsCloudPickerAttachments'] != undefined){var zsCloudAttachments = jQuery.parseJSON(document.forms['zsWebToCase_1261370000000508537']['zsCloudPickerAttachments'].value);zsRenderCloudAttachments(zsCloudAttachments);}zsRearrangeFileBrowseAttachments();zsChangeMousePointer();});function zsResetWebForm(webFormId){document.forms['zsWebToCase_'+webFormId].reset();document.getElementById('zsSubmitButton_1261370000000508537').removeAttribute('disabled');setAllDependancyFieldsMapping();zsAttachedAttachmentsCount = 0;zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];jQuery('#zsFileBrowseAttachments').html('');zsCloudPickerJSON = {};if(document.forms['zsWebToCase_1261370000000508537']['zsCloudPickerAttachments'] != undefined){document.forms['zsWebToCase_1261370000000508537']['zsCloudPickerAttachments'].value = JSON.stringify({});}zsRearrangeFileBrowseAttachments();zsChangeMousePointer();} </script></head><div id='zohoSupportWebToCase' align='center'> <form name='zsWebToCase_1261370000000508537' id='zsWebToCase_1261370000000508537' action='https://desk.zoho.com/support/WebToCase' method='POST' onSubmit='return zsValidateMandatoryFields()' enctype='multipart/form-data'>  <input type='hidden' name='xnQsjsdp' value='edbsnff1f688db9528342725584b67ed56123'/>  <input type='hidden' name='xmIwtLD' value='edbsnaf366b6d895a8b821d4d8446041b5bfee729c191e059037dec044ced7d00adb5'/>  <input type='hidden' name='xJdfEaS' value=''/>  <input type='hidden' name='actionType' value='Q2FzZXM='/>   <input type="hidden" id="property(module)" value="Cases"/>  <input type="hidden" id="dependent_field_values_Cases" value="{&#34;JSON_VALUES&#34;:{},&#34;JSON_SELECT_VALUES&#34;:{},&#34;JSON_MAP_DEP_LABELS&#34;:[]}"/> <input type='hidden' name='returnURL' value='https://miiscs.zohodesk.com/portal'/><table border='0' cellspacing='0' class='zsFormClass'><tr><td colspan='2' class='zsFontClass'><strong>github</strong></td></tr><br><tr ><td nowrap class='zsFontClass ' width='25%' align='left'>Customer Name&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='120' name='Customer Name' value='' /></td></tr> <tr ><td nowrap class='zsFontClass ' width='25%' align='left'>姓&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='120' name='Contact Name' class='manfieldbdr'/></td></tr><tr ><td nowrap class='zsFontClass ' width='25%' align='left'>郵件&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='120' name='Email' value='' class='manfieldbdr'/></td></tr> <tr ><td nowrap class='zsFontClass ' width='25%' align='left'>Address&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='120' name='Address' value='' /></td></tr> <tr ><td nowrap class='zsFontClass ' width='25%' align='left'>主題&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='255' name='Subject' value='' class='manfieldbdr'/></td></tr> <tr ><td nowrap class='zsFontClass ' width='25%' align='left'>Model&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='120' name='Model' value='' /></td></tr> <tr ><td nowrap class='zsFontClass ' width='25%' align='left'>SN&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='120' name='SN' value='' /></td></tr> <tr ><td nowrap class='zsFontClass ' width='25%' align='left'>Qty&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='120' name='Qty' value='' /></td></tr> <tr ><td nowrap class='zsFontClass ' width='25%' align='left'>FailureCode&nbsp;&nbsp;</td><td align='left' width='75%'><input type='text' maxlength='120' name='FailureCode' value='' /></td></tr> <tr ><td nowrap class='zsFontClass ' width='25%' align='left'>Remark &nbsp;&nbsp;</td><td align='left' width='75%'> <textarea name='Remark' maxlength='3000' width='250' height='250' ></textarea></td></tr><tr ><td nowrap class='zsFontClass ' width='25%' align='left'>附件 &nbsp;&nbsp;</td><td align='left' width='75%'><span class="zsFontClass wtcuploadfile" id="zsBrowseAttachment">附加檔</span><input class="wtcuploadinput" type='file' name='attachment_1' id='zsattachment_1' style='display:block;' onclick='zsOpenFileBrowseAttachment(event)' onchange='zsRenderBrowseFileAttachment(this.value, this)'/><input class="wtcuploadinput" type='file' name='attachment_2' id='zsattachment_2' style='display:none;' onclick='zsOpenFileBrowseAttachment(event)' onchange='zsRenderBrowseFileAttachment(this.value, this)'/> <input class="wtcuploadinput" type='file' name='attachment_3' id='zsattachment_3' style='display:none;' onclick='zsOpenFileBrowseAttachment(event)' onchange='zsRenderBrowseFileAttachment(this.value, this)'/> <input class="wtcuploadinput" type='file' name='attachment_4' id='zsattachment_4' style='display:none;' onclick='zsOpenFileBrowseAttachment(event)' onchange='zsRenderBrowseFileAttachment(this.value, this)'/> <input class="wtcuploadinput" type='file' name='attachment_5' id='zsattachment_5' style='display:none;' onclick='zsOpenFileBrowseAttachment(event)' onchange='zsRenderBrowseFileAttachment(this.value, this)'/><div class="clboth"></div><span id='zsMaxSizeMessage' style='color:black;font-size: 8px;float: left;'>您每個檔的大小可高達20MB。</span><span id='zsMaxLimitMessage' style='color:black;font-size: 8px;float: left;margin-left: 14px;display: none;'>您可以一次性地附加多達5 個檔。</span><div id='zsFileBrowseAttachments'></div></td></tr><tr><td nowrap class='zsFontClass' width='25%' align='left'>驗證碼&nbsp;</td><td><div id='zsCaptchaLoading'><strong>載入中...<br><br></strong></div><div id='zsCaptcha' style='display:none;'><img src='#' id='zsCaptchaUrl' name="zsCaptchaImage"><a href='javascript:;' style='color:#00a3fe; cursor:pointer; margin-left:10px; vertical-align:middle;text-decoration: none;' class='zsFontClass' onclick='zsRegenerateCaptcha()'>刷新</a></div><div><input type='text' name='zsWebFormCaptchaWord'/><input type='hidden' name='zsCaptchaSrc' value=''/></div></td><tr><td style='padding: 11px 5px 0px 5px;' colspan='2' align='center' width='25%'> <input type='submit' id="zsSubmitButton_1261370000000508537" class='zsFontClass' value='提交'> &nbsp; &nbsp; <input type='button' class='zsFontClass' value='重置' onclick="zsResetWebForm('1261370000000508537')"> </td></tr><tr><td width='25%' align='left'></td><td style='padding: 0px 5px;' align='left' width='75%'> <div class='wb_FtCon wb_common'><span>技術支援方： </span><a target='_blank' rel='noopener noreferrer' href='https://zoho.com/desk' class='wb_logoCon'><img class='wb_logo' src='https://static.zohocdn.com/zohodeskstatic/app/images/portalLogo.de847024ebc0131731a3.png' /></a></div></td></tr></table></form></div></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!DOCTYPE html><META HTTP-EQUIV='content-type' CONTENT='text/html; charset=UTF-8'><style> #zohoSupportWebToCase textarea, #zohoSupportWebToCase input[type='text'], #zohoSupportWebToCase input[type='date'], #zohoSupportWebToCase select, .wb_common{width: 280px;}#zohoSupportWebToCase td {padding: 11px 5px;}#zohoSupportWebToCase textarea, #zohoSupportWebToCase input[type='text'], #zohoSupportWebToCase input[type='date'], #zohoSupportWebToCase select{border: 1px solid #ddd;padding: 3px 5px;border-radius: 3px;}#zohoSupportWebToCase select {box-sizing: unset}#zohoSupportWebToCase .wb_selectDate {width: auto}#zohoSupportWebToCase input.wb_cusInput {width: 108px}.wb_FtCon{display: flex;align-items: center;justify-content: flex-end;margin-top: 15px;padding-left: 10px}.wb_logoCon{display: flex;margin-left: 5px}.wb_logo{max-width: 16px;max-height: 16px;}#zohoSupportWebToCase .wb_multi_pick {border: 1px solid #ddd;padding: 3px 5px;border-radius: 3px;width: 280px;height: 95px;overflow-y:auto;}#zohoSupportWebToCase .wb_multi_pick_label {display: block;}#zohoSupportWebToCase .wb_multi_pick_input,  .wb_multi_pick_input_all{vertical-align: middle;margin-right: 5px;}.zsFormClass{background-color:#FFFFFF;width:600px} </style><style>.zsFontClass{color:#000000;font-family:Arial;font-size:13px}</style> <style>.manfieldbdr{border-left: 1px solid #ff6448!important} .hleft{text-align:left;} input[type=file]::-webkit-file-upload-button{cursor:pointer;}.wtcsepcode{margin:0px 15px; color:#aaa; float:left;}.wtccloudattach{float:left; color:#00a3fe!important; cursor:pointer; text-decoration: none!important;}.wtccloudattach:hover{text-decoration: none!important;}.wtcuploadinput{cursor:pointer; float:left; width:62px; margin-top:-20px; opacity:0; clear:both;}.wtcuploadfile{float:left;color: #00a3fe;}.filenamecls{margin-right:15px; float:left; margin-top:5px;} .clboth{clear:both;} #zsFileBrowseAttachments{clear:both; margin:5px 0px 10px;} .zsFontClass{vertical-align:top;} #tooltip-zc{font: normal 12px Arial, Helvetica, sans-serif; line-height:18px;position:absolute;padding:8px;margin:20px 0 0;background:#fff;border:1px solid #528dd1;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;color:#eee;-webkit-box-shadow:5px 5px 20px rgba(0,0,0,0.2);-moz-box-shadow:5px 5px 20px rgba(0,0,0,0.2);z-index:10000; color:#777}.wtcmanfield{color:#f00;font-size:16px;position:relative;top:2px;left:1px;} #zsCloudAttachmentIframe{width: 100%;height: 100%;z-index: 99999!important;position: fixed;left: 0px;top:0px; border-style: none; display: none; background-color:#fff;} .wtchelpinfo{background-position: -246px -485px;width:15px;height:15px;display:inline-block;position: relative;top: 2px;background-image: url(https://static.zohocdn.com/zohodeskstatic/app/images/zs-mpro.b6c9cf2347c62390fdcb.png);} .zsMaxSizeMessage{font-size:13px;}</style>
+<style>
+  /* 基本 */
+  #zohoSupportWebToCase .zsFormClass{background:#fff;width:600px;}
+  #zohoSupportWebToCase td{padding:11px 5px; vertical-align:top;}
+  #zohoSupportWebToCase label{font-family:Arial;font-size:13px;color:#000;display:block;margin-bottom:4px;}
+  #zohoSupportWebToCase input[type="text"],
+  #zohoSupportWebToCase textarea{
+    border:1px solid #ddd; padding:6px 8px; border-radius:3px; width:100%;
+    box-sizing:border-box;
+    font-family:Arial; font-size:13px;
+  }
+  #zohoSupportWebToCase textarea{min-height:110px; resize:vertical;}
+
+  /* Mandatory 左紅線 */
+  #zohoSupportWebToCase .manfieldbdr{border-left: 3px solid #ff6448!important;}
+
+  /* 多欄同列 */
+  .row-flex{display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap;}
+  .col{flex:1; min-width:160px;}
+  .col.small{flex:0 0 120px; min-width:120px;}
+  .col.mid{flex:0 0 180px; min-width:180px;}
+
+  /* 檔案區塊微調（沿用你的 class） */
+  .wtcuploadfile{color:#00a3fe; cursor:pointer;}
+    
+  /********************/
+    /* 分隔線 */
+#zohoSupportWebToCase .section-divider td{
+  padding: 6px 5px;           /* 分隔線上下留白 */
+}
+
+#zohoSupportWebToCase .hr-line{
+  height: 1px;
+  background: #e6e6e6;        /* 線色可調 */
+  width: 100%;
+}
+
+    /* 表單外框卡片化 */
+#zohoSupportWebToCase .zsFormClass{
+  background: #fff;
+  width: 600px;
+  border: 1px solid #e6e6e6;  /* 外框 */
+  border-radius: 10px;        /* 圓角 */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* 陰影 */
+  padding: 8px 10px;          /* 讓內容不要貼邊 */
+}
+
+/* 讓 table 圓角顯示正確（避免內容溢出） */
+#zohoSupportWebToCase .zsFormClass{
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+    /* 每列淡淡底線（可選） */
+#zohoSupportWebToCase .zsFormClass tr:not(.section-divider) td{
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/* 最後幾列不要底線（可選） */
+#zohoSupportWebToCase .zsFormClass tr:last-child td{
+  border-bottom: none;
+}
+    
+</style>    
+<style>
+/* ===== 按鈕共用樣式 ===== */
+#zohoSupportWebToCase .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border-radius:8px;
+  border:1px solid transparent;
+  font-family: Arial;
+  font-size:13px;
+  line-height:1;
+  cursor:pointer;
+  user-select:none;
+  transition: all .15s ease;
+  white-space:nowrap;
+}
+
+/* 尺寸：小（新增一筆） */
+#zohoSupportWebToCase .btn-sm{
+  padding:7px 12px;        /* 比你原本小一點但更好按 */
+  min-height:30px;
+}
+
+/* 尺寸：超小（刪除） */
+#zohoSupportWebToCase .btn-xs{
+  padding:4px 8px;         /* 明顯縮小 */
+  min-height:24px;
+  border-radius:7px;
+  font-size:12px;
+}
+
+/* ===== 主要按鈕（新增一筆） ===== */
+#zohoSupportWebToCase .btn-primary{
+  background: linear-gradient(180deg, #2f7cf6 0%, #1f67e8 100%);
+  color:#fff;
+  border-color: rgba(0,0,0,.06);
+  box-shadow: 0 6px 14px rgba(31, 103, 232, 0.18);
+}
+#zohoSupportWebToCase .btn-primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(31, 103, 232, 0.22);
+}
+#zohoSupportWebToCase .btn-primary:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(31, 103, 232, 0.16);
+}
+
+/* ===== 危險按鈕（刪除） ===== */
+#zohoSupportWebToCase .btn-danger{
+  background:#fff;
+  color:#d93025;
+  border-color:#f1c7c7;
+}
+#zohoSupportWebToCase .btn-danger:hover{
+  background:#fff5f5;
+  border-color:#f0b3b3;
+}
+#zohoSupportWebToCase .btn-danger:active{
+  background:#ffecec;
+}
+
+/* 可選：讓按鈕在欄位底部對齊更好看 */
+#zohoSupportWebToCase .prod-row .col.small{
+  display:flex;
+  align-items:flex-end;
+}
+</style>
+   
+<style>
+#zohoSupportWebToCase .icon-btn{
+  width:26px;
+  height:26px;
+  border-radius:8px;
+  border:1px solid #f1c7c7;
+  background:#fff;
+  color:#d93025;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition: all .15s ease;
+  padding:0;
+  line-height:1;
+}
+#zohoSupportWebToCase .icon-btn:hover{
+  background:#fff5f5;
+  border-color:#f0b3b3;
+}
+#zohoSupportWebToCase .icon-btn:active{
+  background:#ffecec;
+}
+</style>
+   
+<style>
+#zohoSupportWebToCase .prod-actions{
+  margin-top:8px;
+  display:flex;
+  justify-content:flex-start;
+}
+</style>
+<style>
+/* ===== Product Info：四欄固定同列（桌機） ===== */
+#zohoSupportWebToCase .prod-toolbar{
+  display:flex;
+  justify-content:flex-start;   /* 你要放最上面、靠左 */
+  align-items:center;
+  margin: 0 0 8px 0;
+}
+
+#zohoSupportWebToCase .prod-row{
+  display:grid;
+  grid-template-columns: 1.15fr 1.15fr 0.55fr 1.15fr; /* Model / SN / Qty / FailureCode */
+  gap: 12px;
+  align-items:end;
+  margin-bottom: 10px;
+}
+
+/* 讓 Model 的 label 與刪除按鈕同一行 */
+#zohoSupportWebToCase .label-with-action{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:4px;
+}
+#zohoSupportWebToCase .label-with-action label{
+  margin:0;          /* 覆蓋你原本 label 的 margin-bottom */
+  display:inline;
+}
+
+/* Qty 欄位略窄一點 */
+#zohoSupportWebToCase .p-qty{
+  text-align:left;
+}
+
+/* ===== 小螢幕：自動換行（避免擠爆） ===== */
+@media (max-width: 640px){
+  #zohoSupportWebToCase .prod-row{
+    grid-template-columns: 1fr 1fr; /* 兩欄一列 */
+  }
+}
+    
+    /* ===== Product Info：新增「刪除按鈕」左欄 + 列分隔線 ===== */
+
+/* 1) prod-row 改成 5 欄：刪除 / Model / SN / Qty / FailureCode */
+#zohoSupportWebToCase .prod-row{
+  display:grid;
+  grid-template-columns: 34px 1.15fr 1.15fr 0.55fr 1.15fr; /* ✅ 多一欄放刪除 */
+  gap:12px;
+  align-items:end;
+  padding: 8px 0;
+}
+
+/* 2) 刪除按鈕欄置中對齊（靠下） */
+#zohoSupportWebToCase .prod-del{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding-bottom: 2px;
+}
+
+/* 3) 列間分隔線（新增一筆就插入一條） */
+#zohoSupportWebToCase .prod-sep{
+  height:1px;
+  background:#e9e9e9;
+  width:100%;
+  margin: 6px 0;
+}
+
+/* 4) 小螢幕：改成兩欄排版（刪除鈕仍在左） */
+@media (max-width: 640px){
+  #zohoSupportWebToCase .prod-row{
+    grid-template-columns: 34px 1fr 1fr; /* 刪除 / 欄位 / 欄位 */
+  }
+  /* 讓後面欄位自然換行 */
+  #zohoSupportWebToCase .prod-field{
+    min-width: 0;
+  }
+}
+    
+    
+    
+/* ===== Product Info：每筆資料卡片化 + 交錯底色 ===== */
+
+/* 多筆容器 */
+#zohoSupportWebToCase #prodRows{
+  display:flex;
+  flex-direction:column;
+  gap:10px; /* 卡片間距 */
+}
+
+/* 每一筆外框卡片 */
+#zohoSupportWebToCase .prod-item{
+  border:1px solid #e8e8e8;
+  border-radius:10px;
+  padding:10px 10px 12px;
+  background:#fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+
+/* Hover 微微浮起，提升辨識 */
+#zohoSupportWebToCase .prod-item:hover{
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+/* 交錯底色（斑馬紋） */
+#zohoSupportWebToCase .prod-item:nth-child(odd){
+  background: #ffffff;
+}
+
+#zohoSupportWebToCase .prod-item:nth-child(even){
+  background: #f7fbff; /* 淡藍底：你也可改成 #fafafa 淡灰 */
+}
+
+/* 卡片內 prod-row 原本已有 grid，這裡補一點內距 */
+#zohoSupportWebToCase .prod-item .prod-row{
+  margin-bottom:0;       /* 避免你原本 margin-bottom 影響卡片高度 */
+  padding:0;             /* 卡片已經有 padding */
+}
+
+/* 刪除按鈕欄位對齊更漂亮 */
+#zohoSupportWebToCase .prod-item .prod-del{
+  align-items:flex-start;  /* 從「靠下」改「靠上」較像卡片操作 */
+  padding-top: 22px;       /* 跟 label 高度對齊 */
+  padding-bottom:0;
+}    
+    
+    
+/* ===== 提交 / 重置：黑字 + 乾淨按鈕樣式 ===== */
+#zohoSupportWebToCase input[type="submit"],
+#zohoSupportWebToCase input[type="button"]{
+  color:#000;
+  background:#ffffff;
+  border:1px solid #d0d0d0;
+  border-radius:8px;
+  padding:8px 20px;
+  font-size:13px;
+  cursor:pointer;
+  transition: all .15s ease;
+}
+
+#zohoSupportWebToCase input[type="submit"]:hover,
+#zohoSupportWebToCase input[type="button"]:hover{
+  background:#f5f5f5;
+  border-color:#bdbdbd;
+}
+
+#zohoSupportWebToCase input[type="submit"]:active,
+#zohoSupportWebToCase input[type="button"]:active{
+  background:#eeeeee;
+}
+</style>    
+    
+    
+    
+<script src='https://static.zohocdn.com/zohodeskstatic/app/js/jqueryandencoder.ef05974972bf3bca1b87.js'></script><script>window.addEventListener('pageshow', function () {const submitButton = document.getElementById('zsSubmitButton_1261370000000508537');if (submitButton) {  submitButton.removeAttribute('disabled');}const captchaTextField = document.forms['zsWebToCase_1261370000000508537']['zsWebFormCaptchaWord'];if(window.zsRegenerateCaptcha && captchaTextField.value) {captchaTextField.value = '';captchaTextField.focus();zsRegenerateCaptcha();}});function trimBoth(str){return jQuery.trim(str);}function setAllDependancyFieldsMapping(){var mapDependancyLabels = getMapDependenySelectValues(jQuery("[id='property(module)']").val(), "JSON_MAP_DEP_LABELS");if(mapDependancyLabels){for(var i = 0; i < mapDependancyLabels.length; i++){var label = mapDependancyLabels[i];var obj = document.forms['zsWebToCase_1261370000000508537'][label];if(obj){setDependent(obj, true);}}}}function getMapDependenySelectValues(module, key){var dependencyObj = jQuery.parseJSON( jQuery("[id='dependent_field_values_" + module + "']").val() );if(dependencyObj == undefined){return dependencyObj;}return dependencyObj[key];}function setDependent(obj, isload){var name = obj.id || (obj[0] && obj[0].id) || "";var module = jQuery("[id='property(module)']").val();var val = "";var myObject = getMapDependenySelectValues(module, "JSON_VALUES");if(myObject !=undefined){val = myObject[name];}var mySelObject = getMapDependenySelectValues(module, "JSON_SELECT_VALUES");if(val != null && val != "" && val != "null" && mySelObject){var fields = val;for(var i in fields){if (fields.hasOwnProperty(i)){var isDependent = false;var label = i;var values = fields[i];if(label.indexOf(")") > -1){label = label.replace(/\)/g, '_____');}if(label.indexOf("(") > -1){label = label.replace(/\(/g, '____');}if(label.indexOf(".") > -1){label = label.replace(/\./g, '___');}var depObj = document.forms['zsWebToCase_1261370000000508537'][label];if(depObj && depObj.options){var mapValues = "";var selected_val = depObj.value;var depLen = depObj.options.length-1;for (var n = depLen; n >= 0; n--) {if (depObj.options[n].selected){if(mapValues == ""){mapValues = depObj.options[n].value;}else{mapValues = mapValues + ";;;"+depObj.options[n].value;}}}depObj.value = "";var selectValues = mySelObject[label];for(var k in values){var rat = k;if(rat == "-None-"){rat = "";}var parentValues = mySelObject[name];if(rat == trimBoth(obj.value)){isDependent = true;depObj.length = 0;var depvalues = values[k];var depLen = depvalues.length - 1;for(var j = 0; j <= depLen; j++){var optionElement = document.createElement("OPTION");var displayValue = depvalues[j];var actualValue = displayValue;if(actualValue == "-None-"){optionElement.value = "";displayValue = "-None-";}else{optionElement.value = actualValue;}optionElement.text = displayValue;if(mapValues != undefined){var mapValue = mapValues.split(";;;");var len = mapValue.length;for(var p = 0; p < len; p++){if(actualValue == mapValue[p]){optionElement.selected = true;}}}depObj.options.add(optionElement);}}}if(!isDependent){depObj.length = 0;var len = selectValues.length;for(var j = 0; j < len; j++){var actualValue = selectValues[j];var optionElement = document.createElement("OPTION");if(actualValue == "-None-"){optionElement.value = "";}else{optionElement.value = selectValues[j];}optionElement.text = selectValues[j];depObj.options.add(optionElement);}depObj.value =  selected_val;}if(!isload){setDependent(depObj,false);}var jdepObj = jQuery(depObj);if(jdepObj.hasClass('select2-offscreen')){jdepObj.select2("val", jdepObj.val());}}}}}}function setSelectAll(id){var parentElement = document.getElementById(id);var hiddenInput = parentElement.querySelector('#hiddenoptions');var selectAllElement = parentElement.querySelector('#selectall' + id);var selectedValues = [];var checkboxes = parentElement.querySelectorAll('.wb_multi_pick_input');checkboxes.forEach(function (cb) {cb.checked = selectAllElement.checked;if (cb.checked && cb.value) {selectedValues.push(cb.value);}});hiddenInput.value = selectedValues.join(',');}function setMultiSelectOption(id, obj){var parentElement = document.getElementById(id);var hiddenInput = parentElement.querySelector('#hiddenoptions');var selectAllElement = parentElement.querySelector('#selectall' + id);var selectedStr = hiddenInput.value;var selectedValues = selectedStr ? selectedStr.split(',') : [];if(obj.checked && obj.value) {selectedValues.push(obj.value);}else if(!obj.checked && obj.value) {selectedValues.splice(selectedValues.indexOf(obj.value), 1);selectAllElement.checked = false;}else {selectAllElement.checked = false;}hiddenInput.value = selectedValues.join(',');}var zctt = function(){var tt, mw = 400, top = 10, left = 0, doctt = document;var ieb = doctt.all ? true : false;return{showtt: function(cont, wid){if(tt == null){tt = doctt.createElement('div');tt.setAttribute('id', 'tooltip-zc');doctt.body.appendChild(tt);doctt.onmousemove = this.setpos;doctt.onclick = this.hidett;}tt.style.display = 'block';tt.innerHTML = cont;tt.style.width = wid ? wid + 'px' : 'auto';if(!wid && ieb){tt.style.width = tt.offsetWidth;}if(tt.offsetWidth > mw){tt.style.width = mw + 'px'}h = parseInt(tt.offsetHeight) + top;w = parseInt(tt.offsetWidth) + left;},hidett: function(){tt.style.display = 'none';},setpos: function(e){var u = ieb ? event.clientY + doctt.body.scrollTop : e.pageY;var l = ieb ? event.clientX + doctt.body.scrollLeft : e.pageX;var cw = doctt.body.clientWidth;var ch = doctt.body.clientHeight;if(l < 0){tt.style.left = left + 'px';tt.style.right = '';}else if((l+w+left) > cw){tt.style.left = '';tt.style.right = ((cw-l) + left) + 'px';}else{tt.style.right = '';tt.style.left = (l + left) + 'px';}if(u < 0){tt.style.top = top + 'px';tt.style.bottom = '';}else if((u + h + left) > ch){tt.style.top = '';tt.style.bottom = ((ch - u) + top) + 'px';}else{tt.style.bottom = '';tt.style.top = (u + top) + 'px';}}};}();var zsWebFormMandatoryFields = new Array("Contact Name","Email","Subject");var zsFieldsDisplayLabelArray = new Array("姓","郵件","主題");function reformatAllDateFields() {const dateFields = document.querySelectorAll('.dob-field');dateFields.forEach(field => {if (field.value && field.value.includes('-')) {const parts = field.value.split('-');if (parts.length === 3) {const [yyyy, mm, dd] = parts;field.type= 'text';field.value = `${dd}/${mm}/${yyyy}`;}}});}function zsValidateMandatoryFields(){var name = '';var email = '';var isError = 0;for(var index = 0; index < zsWebFormMandatoryFields.length; index++){isError = 0;var fieldObject = document.forms['zsWebToCase_1261370000000508537'][zsWebFormMandatoryFields[index]];if(fieldObject){if(((fieldObject.value).replace(/^\s+|\s+$/g, '')).length == 0){alert(zsFieldsDisplayLabelArray[index] +' 不能為空 ');fieldObject.focus();isError = 1;return false;}else{if(fieldObject.name == 'Email'){if(!fieldObject.value.match(/^([\w_][\w\-_.+\'&]*)@(?=.{4,256}$)(([\w]+)([\-_]*[\w])*[\.])+[a-zA-Z]{2,22}$/)){isError = 1;alert('輸入一個有效的郵箱Id');fieldObject.focus();return false;}}}if(fieldObject.nodeName == 'SELECT'){if(fieldObject.options[fieldObject.selectedIndex].value == '-None-'){alert(zsFieldsDisplayLabelArray[index] +' 不能為空');fieldObject.focus();isError = 1;return false;}}if(fieldObject.type == 'checkbox'){if (fieldObject.checked == false){alert('請接受 '+zsFieldsDisplayLabelArray[index]);fieldObject.focus();isError = 1;return false;}}}}if(isError == 0){if(document.forms['zsWebToCase_1261370000000508537']['zsWebFormCaptchaWord'].value.replace(/^\s+|\s+$/g, '').length == 0){alert('請輸入驗證碼。');document.forms['zsWebToCase_1261370000000508537']['zsWebFormCaptchaWord'].focus();return false;}}if(isError == 0){reformatAllDateFields();document.getElementById('zsSubmitButton_1261370000000508537').setAttribute('disabled', 'disabled');}}var ZSEncoder = {encodeForHTML : function(str){if(str && typeof(str)==='string'){return jQuery.encoder.encodeForHTML(str);}return str;},encodeForHTMLAttribute : function(str) {if(str && typeof(str)==='string'){return jQuery.encoder.encodeForHTMLAttribute(str);}return str;},encodeForJavascript : function(str) {if(str && typeof(str)==='string'){return jQuery.encoder.encodeForJavascript(str);}return str;},encodeForCSS : function(str) {if(str && typeof(str)==='string'){return jQuery.encoder.encodeForCSS(str);}return str;}};var zsAttachedAttachmentsCount = 0;var zsAllowedAttachmentLimit = 4;var zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];function zsOpenCloudPickerIframe(){if(zsAttachedAttachmentsCount < 5){var zsCloudPickerIframeSrc = jQuery('#zsCloudPickerIframeSrc').val();jQuery('#zsCloudAttachmentIframe').attr('src', zsCloudPickerIframeSrc.substring(0, zsCloudPickerIframeSrc.length - 1) + (5 - zsAttachedAttachmentsCount)).show();zsListenCloudPickerMessages();}}function zsListenCloudPickerMessages(){if(window.addEventListener){window.addEventListener('message', zsWebReceiveMessage, false);}else if(window.attachEvent){window.attachEvent('onmessage', zsWebReceiveMessage);}}var zsCloudPickerJSON = {};function zsWebReceiveMessage(event){var zsUrlRegex = /^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\:\'\/\\+=&amp;%\$#_]*)?$/;if(zsUrlRegex.test(event.origin)){var zsMessageType = event.data.split('&&&');if(zsMessageType[0] == 'zsCloudPickerMessage'){if(window.addEventListener){window.removeEventListener('message', zsWebReceiveMessage, false);}else if(window.attachEvent){window.detachEvent('onmessage', zsWebReceiveMessage );}jQuery('#zsCloudAttachmentIframe').hide();var isAttachedFilesDetails = zsMessageType[1].split('|||');if(isAttachedFilesDetails[0] == 'cloudPickerResponse'){var zsCloudPickerAttachmentDetails = isAttachedFilesDetails[1].split('::::');var zsCloudPickerAttachmentsJSON = jQuery.parseJSON(zsCloudPickerAttachmentDetails[0]);if(zsAttachedAttachmentsCount <= zsAllowedAttachmentLimit){zsRenderCloudAttachments(zsCloudPickerAttachmentsJSON);}else{alert('您無法附加超過5個以上的檔');return false;}}}}}function zsRenderCloudAttachments(zsCloudPickerAttachmentsJSON){if(!jQuery.isEmptyObject(zsCloudPickerAttachmentsJSON)){jQuery.each(zsCloudPickerAttachmentsJSON, function(cloudServiceName, attachments){var zsAttachmentsArray = [];if(!jQuery.isEmptyObject(zsCloudPickerJSON[cloudServiceName])){zsAttachmentsArray = zsCloudPickerJSON[cloudServiceName];}for(var attachmentsIndex = 0; attachmentsIndex < attachments.length; attachmentsIndex++){if(zsAttachedAttachmentsCount <= zsAllowedAttachmentLimit){var zsCloudAttachmentsList = '';var attachmentsDetailJSON = attachments[attachmentsIndex];var zsCloudAttachmentName = attachmentsDetailJSON['docName'];var extension = zsCloudAttachmentName.split('.').pop().toLowerCase();var unSupportedExtensions = ["ade","adp","apk","appx","appxbundle","bat","cab","cer","chm","cmd","com","cpl","dll","dmg","exe","hlp","hta","ins","iso","isp","jar","js","jse","lnk","mde","msc","msi","msix","msixbundle","msp","mst","nsh","pif","ps1","pst","reg","scr","sct","shb","sys","tmp","url","vb","vbe","vbs","vxd","wsc","wsf","wsh","terminal"];if(unSupportedExtensions.indexOf(extension)!=-1){alert("該檔未附加，因為其副檔名不受支援。");continue;}zsAttachedAttachmentsCount = zsAttachedAttachmentsCount + 1;var zsCloudAttachmentId = attachmentsDetailJSON['docId'];zsCloudAttachmentId = zsCloudAttachmentId.replace(/\s/g, '');zsCloudAttachmentsList = '<div class="filenamecls zsFontClass">'+ZSEncoder.encodeForHTML(zsCloudAttachmentName)+'<a id="'+ ZSEncoder.encodeForHTMLAttribute(zsCloudAttachmentId) +'" cloudservice="'+ ZSEncoder.encodeForHTMLAttribute(cloudServiceName) +'" class="zscloudAttachment" style="margin-left:10px;" href="javascript:;">X</a> </div>';jQuery('#zsFileBrowseAttachments').append(zsCloudAttachmentsList);zsAttachmentsArray.push(attachmentsDetailJSON);zsCloudPickerJSON[cloudServiceName] = zsAttachmentsArray;jQuery("input[name='zsCloudPickerAttachments']")[0].value = JSON.stringify(zsCloudPickerJSON);}}});}zsChangeMousePointer();}jQuery(document).off('click.cAtm').on('click.cAtm','.zscloudAttachment', function(){var cloudService = jQuery(this).attr('cloudservice');var cloudAttachmentId = jQuery(this).attr('id');var zsCloudAttachmentsArr = zsCloudPickerJSON[cloudService];var isZsCloudAttachmentRemoved = 0;for(var attachmentsIndex = 0; attachmentsIndex < zsCloudAttachmentsArr.length; attachmentsIndex++){if(isZsCloudAttachmentRemoved != 1){jQuery.each(zsCloudAttachmentsArr[attachmentsIndex], function(attachmentsDetailJsonKey, attachmentsDetailJsonValue){if(attachmentsDetailJsonKey == 'docId' && attachmentsDetailJsonValue.replace(/\s/g, '') == cloudAttachmentId){var zsAttachmentToBeRemoved = jQuery.inArray(zsCloudAttachmentsArr[attachmentsIndex], zsCloudAttachmentsArr);zsCloudAttachmentsArr.splice(zsAttachmentToBeRemoved, 1);isZsCloudAttachmentRemoved = 1;}});}}jQuery(this).parent().remove();zsAttachedAttachmentsCount = zsAttachedAttachmentsCount - 1;jQuery("input[name='zsCloudPickerAttachments']")[0].value = JSON.stringify(zsCloudPickerJSON);zsChangeMousePointer();});function zsRenderBrowseFileAttachment(zsAttachmentObject, zsAttachmentDetails){if(zsAttachmentObject != ''){if((zsAttachmentDetails.files && (zsAttachmentDetails.files[0].size/(1024*1024))>20)){zsAttachmentDetails.value='';alert('允許的檔大小上限為20MB。');return;}if(zsAttachedAttachmentsCount < 5){var zsFileName='';if((zsAttachmentObject.indexOf('\\') > -1)){var zsAttachmentDataSplits = zsAttachmentObject.split('\\');var zsAttachmentDataSplitsLen = zsAttachmentDataSplits.length;zsFileName = zsAttachmentDataSplits[zsAttachmentDataSplitsLen - 1];}else{zsFileName = zsAttachmentObject;}var extension = zsFileName.split('.').pop().toLowerCase();var unSupportedExtensions = ["ade","adp","apk","appx","appxbundle","bat","cab","cer","chm","cmd","com","cpl","dll","dmg","exe","hlp","hta","ins","iso","isp","jar","js","jse","lnk","mde","msc","msi","msix","msixbundle","msp","mst","nsh","pif","ps1","pst","reg","scr","sct","shb","sys","tmp","url","vb","vbe","vbs","vxd","wsc","wsf","wsh","terminal"];if(unSupportedExtensions.indexOf(extension)!=-1){alert("該檔未附加，因為其副檔名不受支援。");return;}var zsCurrentAttachmentIdTokens = jQuery(zsAttachmentDetails).attr('id').split('_');var zsCurrentAttachmentId = parseInt(zsCurrentAttachmentIdTokens[1]);var zsAttachmentIdToBeRemoved = jQuery.inArray(zsCurrentAttachmentId, zsAttachmentFileBrowserIdsList);zsAttachmentFileBrowserIdsList.splice(zsAttachmentIdToBeRemoved, 1);var zsNextAttachmentId = zsAttachmentFileBrowserIdsList[0];var zsnextAttachment = 'zsattachment_'+zsNextAttachmentId;jQuery('#zsattachment_'+zsCurrentAttachmentId).hide();jQuery('#'+zsnextAttachment).show();jQuery('#zsFileBrowseAttachments').append('<div class="filenamecls zsFontClass" id="file_'+zsCurrentAttachmentId+'">'+ ZSEncoder.encodeForHTML(zsFileName) + '<a class="zsfilebrowseAttachment" style="margin-left:10px;" href="javascript:;" id="fileclose_'+zsCurrentAttachmentId+'">X</a></div>');zsAttachedAttachmentsCount = zsAttachedAttachmentsCount + 1;}}zsChangeMousePointer();}jQuery(document).off('click.fba').on('click.fba', '.zsfilebrowseAttachment', function(){var currentlyDeletedElement = jQuery(this).attr('id').split('_')[1];jQuery('#zsattachment_'+currentlyDeletedElement).val('');jQuery('#zsattachment_'+currentlyDeletedElement).replaceWith(jQuery('#zsattachment_'+currentlyDeletedElement).clone());jQuery(this).parent().remove();zsAttachedAttachmentsCount = zsAttachedAttachmentsCount - 1;zsAttachmentFileBrowserIdsList.push(parseInt(currentlyDeletedElement));zsRearrangeFileBrowseAttachments();zsChangeMousePointer();});function zsRearrangeFileBrowseAttachments(){jQuery.each(jQuery('input[type = file]'), function(fileIndex, fileObject){fileIndex = fileIndex + 1;if(fileIndex == zsAttachmentFileBrowserIdsList[0]){jQuery('#zsattachment_'+fileIndex).show();}else{jQuery('#zsattachment_'+fileIndex).hide();}});}function zsOpenFileBrowseAttachment(clickEvent){if(zsAttachedAttachmentsCount >= 5){clickEvent.preventDefault();}}function zsChangeMousePointer(){if(zsAttachedAttachmentsCount >= 5){jQuery('#zsMaxLimitMessage').show();jQuery('#zsattachment_1,#zsattachment_2,#zsattachment_3,#zsattachment_4,#zsattachment_5').hide();jQuery('#zsBrowseAttachment,#zsCloudAttachment').css('cursor', 'default');}else{jQuery('#zsMaxLimitMessage').hide();zsRearrangeFileBrowseAttachments();jQuery('#zsBrowseAttachment,#zsCloudAttachment').css('cursor', 'pointer');}}function zsShowCaptcha(){jQuery('#zsCaptchaLoading').hide();jQuery('#zsCaptcha').show();}function zsRegenerateCaptcha(){var webFormxhr = {};webFormxhr = new XMLHttpRequest();webFormxhr.open('GET','https://desk.zoho.com/support/GenerateCaptcha?action=getNewCaptcha&_='+new Date().getTime(),true);webFormxhr.onreadystatechange = function () {if(webFormxhr.readyState === 4 && webFormxhr.status === 200) {try{ var response = (webFormxhr.responseText != null) ? JSON.parse(webFormxhr.responseText) : ''; jQuery('#zsCaptchaUrl').load(zsShowCaptcha);document.getElementById('zsCaptchaUrl').src = response.captchaUrl;document.getElementsByName('xJdfEaS')[0].value = response.captchaDigest;}catch(e){}}};webFormxhr.send();}document.addEventListener('readystatechange',function(){if(document.readyState === 'complete' && window.zsRegenerateCaptcha ){zsRegenerateCaptcha();}setAllDependancyFieldsMapping();document.getElementById('zsSubmitButton_1261370000000508537').removeAttribute('disabled');zsAttachedAttachmentsCount = 0;zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];document.forms['zsWebToCase_1261370000000508537']['zsWebFormCaptchaWord'].value = '';jQuery('#zsFileBrowseAttachments').html('');jQuery.each(jQuery('input[type = file]'), function(fileIndex, fileObject){var zsAttachmentId = jQuery(fileObject).attr('id');var zsAttachmentNo = zsAttachmentId.split('_')[1];var zsAttachedFile = jQuery('#zsattachment_'+zsAttachmentNo);if(zsAttachedFile[0] != undefined && zsAttachedFile[0].files[0] != undefined){var zsFileBrowserAttachmentHtml = '';zsAttachedFileName = zsAttachedFile[0].files[0].name;zsFileBrowserAttachmentHtml = '<div class="filenamecls zsFontClass" id="file_'+zsAttachmentNo+'">'+ ZSEncoder.encodeForHTML(zsAttachedFileName) +'<a class="zsfilebrowseAttachment" style="margin-left:10px" href="javascript:;" id="fileclose_'+zsAttachmentNo+'">X</a></div>';jQuery('#zsFileBrowseAttachments').append(zsFileBrowserAttachmentHtml);zsAttachedAttachmentsCount = zsAttachedAttachmentsCount + 1;var zsAttachmentIdToBeRemoved = jQuery.inArray(parseInt(zsAttachmentNo), zsAttachmentFileBrowserIdsList);zsAttachmentFileBrowserIdsList.splice(zsAttachmentIdToBeRemoved, 1);}});if(document.forms['zsWebToCase_1261370000000508537']['zsCloudPickerAttachments'] != undefined){var zsCloudAttachments = jQuery.parseJSON(document.forms['zsWebToCase_1261370000000508537']['zsCloudPickerAttachments'].value);zsRenderCloudAttachments(zsCloudAttachments);}zsRearrangeFileBrowseAttachments();zsChangeMousePointer();});function zsResetWebForm(webFormId){document.forms['zsWebToCase_'+webFormId].reset();document.getElementById('zsSubmitButton_1261370000000508537').removeAttribute('disabled');setAllDependancyFieldsMapping();zsAttachedAttachmentsCount = 0;zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];jQuery('#zsFileBrowseAttachments').html('');zsCloudPickerJSON = {};if(document.forms['zsWebToCase_1261370000000508537']['zsCloudPickerAttachments'] != undefined){document.forms['zsWebToCase_1261370000000508537']['zsCloudPickerAttachments'].value = JSON.stringify({});}zsRearrangeFileBrowseAttachments();zsChangeMousePointer();} </script>
+</head>
+<body>
+<div id='zohoSupportWebToCase' align='center'> <form name='zsWebToCase_1261370000000508537' id='zsWebToCase_1261370000000508537' action='https://desk.zoho.com/support/WebToCase' method='POST' onSubmit='return zsValidateMandatoryFields()' enctype='multipart/form-data'>  <input type='hidden' name='xnQsjsdp' value='edbsnff1f688db9528342725584b67ed56123'/>  <input type='hidden' name='xmIwtLD' value='edbsnaf366b6d895a8b821d4d8446041b5bfee729c191e059037dec044ced7d00adb5'/>  <input type='hidden' name='xJdfEaS' value=''/>  <input type='hidden' name='actionType' value='Q2FzZXM='/>   <input type="hidden" id="property(module)" value="Cases"/>  <input type="hidden" id="dependent_field_values_Cases" value="{&#34;JSON_VALUES&#34;:{},&#34;JSON_SELECT_VALUES&#34;:{},&#34;JSON_MAP_DEP_LABELS&#34;:[]}"/> <input type='hidden' name='returnURL' value='https://miiscs.zohodesk.com/portal'/>
+    
+    
+    
+<table border="0" cellspacing="0" class="zsFormClass">
+  <tr>
+    <td colspan="2" class="zsFontClass"><strong>github</strong></td>
+  </tr>
+
+  <!-- 第 1 列：Subject -->
+  <tr>
+    <td width="25%" align="left" class="zsFontClass">
+      <label>Subject <span class="wtcmanfield">*</span></label>
+    </td>
+    <td width="75%" align="left">
+      <input type="text" maxlength="255" name="Subject" value="" class="manfieldbdr" />
+    </td>
+  </tr>
+
+  <!-- 第 2 列：Customer Name + Contact Name -->
+  <tr>
+    <td width="25%" align="left" class="zsFontClass">
+      <label>Customer / Contact Name <span class="wtcmanfield">*</span></label>
+    </td>
+    <td width="75%" align="left">
+      <div class="row-flex">
+        <div class="col">
+          <label>Customer Name</label>
+          <input type="text" maxlength="120" name="Customer Name" value="" />
+        </div>
+        <div class="col">
+          <label>Contact Name</label>
+          <input type="text" maxlength="120" name="Contact Name" class="manfieldbdr" />
+        </div>
+      </div>
+    </td>
+  </tr>
+
+  <!-- 第 3 列：Email + Address -->
+  <tr>
+    <td width="25%" align="left" class="zsFontClass">
+      <label>Email / Address <span class="wtcmanfield">*</span></label>
+    </td>
+    <td width="75%" align="left">
+      <div class="row-flex">
+        <div class="col">
+          <label>Email</label>
+          <input type="text" maxlength="120" name="Email" value="" class="manfieldbdr" />
+        </div>
+        <div class="col">
+          <label>Address</label>
+          <input type="text" maxlength="120" name="Address" value="" />
+        </div>
+      </div>
+    </td>
+  </tr>
+
+    
+  <!-- 分隔線：Email/Address 與 Product Info 之間 -->
+<tr class="section-divider">
+  <td colspan="2">
+    <div class="hr-line"></div>
+  </td>
+</tr>
+    
+    
+    
+    
+<!-- 第 4 列：Product Info（可動態新增多筆） -->
+<tr>
+  <td width="25%" align="left" class="zsFontClass">
+    <label>Product Info</label>
+  </td>
+
+  <td width="75%" align="left">
+
+    <!-- ✅ 新增按鈕：放在第一筆 Model 的最上面（整個區塊最上方） -->
+    <div class="prod-toolbar">
+      <button type="button" id="addRow" class="btn btn-primary btn-sm">+ 新增一筆產品</button>
+    </div>
+
+    <!-- 多筆列容器 -->
+    <div id="prodRows">
+
+<!-- 第一列（模板列） -->
+<div class="prod-item">
+  <div class="prod-row">
+    <!-- ✅ 刪除按鈕：最左欄 -->
+    <div class="prod-del">
+      <button type="button" class="icon-btn removeRow" aria-label="刪除此筆" title="刪除">✕</button>
+    </div>
+
+    <!-- Model -->
+    <div class="prod-field">
+      <label>Model</label>
+      <input type="text" class="p-model" maxlength="120" />
+    </div>
+
+    <!-- SN -->
+    <div class="prod-field">
+      <label>SN</label>
+      <input type="text" class="p-sn" maxlength="120" />
+    </div>
+
+    <!-- Qty -->
+    <div class="prod-field">
+      <label>Qty</label>
+      <input type="text" class="p-qty" inputmode="numeric" pattern="[0-9]*" maxlength="10" />
+    </div>
+
+    <!-- FailureCode -->
+    <div class="prod-field">
+      <label>FailureCode</label>
+      <input type="text" class="p-fc" maxlength="120" />
+    </div>
+  </div>
+</div>
+
+    <!-- 隱藏欄位：送到 Zoho Desk 的多行自訂欄位 -->
+    <textarea name="Product_Details" id="Product_Details" style="display:none;"></textarea>
+<textarea name="Description" id="Description" style="display:none;"></textarea>
+
+  </td>
+</tr>   
+    
+    
+    
+  <!-- Remark（你原本有，我保留；若你不需要可刪） -->
+  <tr>
+    <td width="25%" align="left" class="zsFontClass">
+      <label>Remark</label>
+    </td>
+    <td width="75%" align="left">
+      <textarea name="Remark" maxlength="3000"></textarea>
+    </td>
+  </tr>
+
+  <!-- 第 5 列：附件（沿用你原本的附件機制） -->
+  <tr>
+    <td width="25%" align="left" class="zsFontClass">
+      <label>附件</label>
+    </td>
+    <td width="75%" align="left">
+      <span class="zsFontClass wtcuploadfile" id="zsBrowseAttachment">附加檔</span>
+
+      <input class="wtcuploadinput" type="file" name="attachment_1" id="zsattachment_1"
+        style="display:block;" onclick="zsOpenFileBrowseAttachment(event)"
+        onchange="zsRenderBrowseFileAttachment(this.value, this)" />
+
+      <input class="wtcuploadinput" type="file" name="attachment_2" id="zsattachment_2"
+        style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+        onchange="zsRenderBrowseFileAttachment(this.value, this)" />
+
+      <input class="wtcuploadinput" type="file" name="attachment_3" id="zsattachment_3"
+        style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+        onchange="zsRenderBrowseFileAttachment(this.value, this)" />
+
+      <input class="wtcuploadinput" type="file" name="attachment_4" id="zsattachment_4"
+        style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+        onchange="zsRenderBrowseFileAttachment(this.value, this)" />
+
+      <input class="wtcuploadinput" type="file" name="attachment_5" id="zsattachment_5"
+        style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+        onchange="zsRenderBrowseFileAttachment(this.value, this)" />
+
+      <div class="clboth"></div>
+      <span id="zsMaxSizeMessage" style="color:black;font-size: 8px;float: left;">
+        您每個檔的大小可高達20MB。
+      </span>
+      <span id="zsMaxLimitMessage" style="color:black;font-size: 8px;float: left;margin-left: 14px;display: none;">
+        您可以一次性地附加多達5 個檔。
+      </span>
+      <div id="zsFileBrowseAttachments"></div>
+    </td>
+  </tr>
+<tr><td nowrap class='zsFontClass' width='25%' align='left'>驗證碼&nbsp;</td><td><div id='zsCaptchaLoading'><strong>載入中...<br><br></strong></div><div id='zsCaptcha' style='display:none;'><img src='#' id='zsCaptchaUrl' name="zsCaptchaImage"><a href='javascript:;' style='color:#00a3fe; cursor:pointer; margin-left:10px; vertical-align:middle;text-decoration: none;' class='zsFontClass' onclick='zsRegenerateCaptcha()'>刷新</a></div><div><input type='text' name='zsWebFormCaptchaWord'/><input type='hidden' name='zsCaptchaSrc' value=''/></div></td><tr><td style='padding: 11px 5px 0px 5px;' colspan='2' align='center' width='25%'> <input type='submit' id="zsSubmitButton_1261370000000508537" class='zsFontClass' value='提交'> &nbsp; &nbsp; <input type='button' class='zsFontClass' value='重置' onclick="zsResetWebForm('1261370000000508537')"> </td></tr><tr><td width='25%' align='left'></td><td style='padding: 0px 5px;' align='left' width='75%'> <div class='wb_FtCon wb_common'><span>技術支援方： </span><a target='_blank' rel='noopener noreferrer' href='https://zoho.com/desk' class='wb_logoCon'><img class='wb_logo' src='https://static.zohocdn.com/zohodeskstatic/app/images/portalLogo.de847024ebc0131731a3.png' /></a></div></td></tr> 
+  <!-- ↓ 下面的 驗證碼 / 提交按鈕 / footer 你可以沿用原本的，不用動 -->
+</table>       </form></div>
+
+<script>
+(function(){
+  const form = document.getElementById('zsWebToCase_1261370000000508537');
+  const prodRows = document.getElementById('prodRows');
+  const addRowBtn = document.getElementById('addRow');
+  const hidden = document.getElementById('Product_Details');
+ const hiddenDesc = document.getElementById('Description');
+
+  if(!form || !prodRows || !addRowBtn || !hidden) return;
+
+  // 只允許 Qty 輸入數字（含貼上）
+  function digitsOnly(input){
+    input.value = input.value.replace(/[^\d]/g, '');
+  }
+
+  // 取得「模板卡片」
+  function getTemplateItem(){
+    return prodRows.querySelector('.prod-item');
+  }
+
+  // 新增一筆（複製卡片）
+  addRowBtn.addEventListener('click', () => {
+    const tpl = getTemplateItem();
+    if(!tpl) return;
+
+    const clone = tpl.cloneNode(true);
+    clone.querySelectorAll('input').forEach(i => i.value = '');
+
+    prodRows.appendChild(clone);
+  });
+
+  // 刪除一筆（事件委派：刪 prod-item）
+  prodRows.addEventListener('click', (e) => {
+    const btn = e.target.closest('.removeRow');
+    if(!btn) return;
+
+    const items = prodRows.querySelectorAll('.prod-item');
+    if(items.length <= 1) return; // 至少保留一筆
+
+    const item = e.target.closest('.prod-item');
+    if(item) item.remove();
+  });
+
+  // Qty 數字限制（事件委派）
+  prodRows.addEventListener('input', (e) => {
+    if(e.target.classList.contains('p-qty')) digitsOnly(e.target);
+  });
+
+  // Submit 前彙整：把多筆列轉成文字塞到 hidden textarea
+  form.addEventListener('submit', () => {
+    const items = [...prodRows.querySelectorAll('.prod-item')];
+
+    const lines = items.map((item, idx) => {
+      const r = item.querySelector('.prod-row');
+      const model = r.querySelector('.p-model')?.value.trim() || '';
+      const sn    = r.querySelector('.p-sn')?.value.trim() || '';
+      const qty   = r.querySelector('.p-qty')?.value.trim() || '';
+      const fc    = r.querySelector('.p-fc')?.value.trim() || '';
+
+      // 空白列不輸出
+      if(!model && !sn && !qty && !fc) return null;
+
+      return [
+        `#${idx+1}`,
+        model ? `Model=${model}` : null,
+        sn    ? `SN=${sn}` : null,
+        qty   ? `Qty=${qty}` : null,
+        fc    ? `FailureCode=${fc}` : null
+      ].filter(Boolean).join(' ; ');
+    }).filter(Boolean);
+
+    hidden.value = lines.join('\n');
+  });
+})();
+</script>
+</body>
+</html>

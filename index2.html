@@ -190,7 +190,7 @@
 
   <!-- Zoho 依賴 -->
   <script src="https://static.zohocdn.com/zohodeskstatic/app/js/jqueryandencoder.ef05974972bf3bca1b87.js"></script>
-
+  
   <!-- ========== Zoho 原生 JS（含必填驗證、附件、Captcha 等） ==========
        注意：我已把所有 ID 改成對方的 1276964000000470001
   -->
@@ -914,4 +914,15 @@
     })();
   </script>
 </body>
+
+  <script>
+  // 保險：DOM 完成後 0.5 秒再叫一次 captcha（避免 readystatechange 沒觸發或載入順序問題）
+  window.addEventListener('load', function () {
+    try {
+      if (typeof zsRegenerateCaptcha === 'function') {
+        setTimeout(function(){ zsRegenerateCaptcha(); }, 500);
+      }
+    } catch(e) {}
+  });
+</script>
 </html>

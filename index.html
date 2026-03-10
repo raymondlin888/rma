@@ -148,6 +148,143 @@
     }
     #zohoSupportWebToCase input[type="submit"]:active,
     #zohoSupportWebToCase input[type="button"]:active{background:#eeeeee;}
+
+
+  <style>
+/* ================================
+   ✅ 表單整體外框（像真正的 Web Form）
+================================ */
+#zohoSupportWebToCase .zsFormClass{
+  max-width: 760px;              /* 不會太擠、也不會太寬 */
+  margin: 24px auto;             /* 置中 + 上下留白 */
+  background: #ffffff;
+  border: 1px solid #dcdcdc;     /* 外框 */
+  border-radius: 14px;           /* 圓角 */
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08); /* 浮起來 */
+  padding: 20px 22px 26px;
+}
+
+/* ================================
+   ✅ 表單標題列（RMA Repair Request）
+================================ */
+#zohoSupportWebToCase .zsFormClass tr:first-child td{
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 5px 18px;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+/* ================================
+   ✅ 每一列欄位間距與對齊
+================================ */
+#zohoSupportWebToCase .zsFormClass tr td{
+  padding: 12px 8px;
+  vertical-align: top;
+}
+
+/* 左側欄位標籤 */
+#zohoSupportWebToCase .zsFormClass td:first-child{
+  font-weight: 600;
+  color: #333;
+  padding-top: 18px;
+  width: 28%;
+}
+
+/* ================================
+   ✅ Input / textarea 視覺一致化
+================================ */
+#zohoSupportWebToCase input[type="text"],
+#zohoSupportWebToCase textarea{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #cfcfcf;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+/* Focus 狀態 */
+#zohoSupportWebToCase input[type="text"]:focus,
+#zohoSupportWebToCase textarea:focus{
+  outline: none;
+  border-color: #2f7cf6;
+  box-shadow: 0 0 0 3px rgba(47,124,246,0.15);
+}
+
+/* ================================
+   ✅ 區塊分隔線（你已有 section-divider）
+================================ */
+#zohoSupportWebToCase .hr-line{
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #dcdcdc,
+    transparent
+  );
+  margin: 8px 0;
+}
+
+/* ================================
+   ✅ Product Info 區塊「像子表單」
+================================ */
+#zohoSupportWebToCase #prodRows{
+  margin-top: 10px;
+}
+
+#zohoSupportWebToCase .prod-item{
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  padding: 14px 14px 16px;
+  background: #fafcff;
+}
+
+/* 每一筆產品上方小標示（視覺上像一組） */
+#zohoSupportWebToCase .prod-item::before{
+  content: "Product Item";
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+/* ================================
+   ✅ 按鈕區塊（提交 / 重置）
+================================ */
+#zohoSupportWebToCase input[type="submit"]{
+  background: #2f7cf6;
+  color: #fff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+#zohoSupportWebToCase input[type="submit"]:hover{
+  background: #1f67e8;
+}
+
+#zohoSupportWebToCase input[type="button"]{
+  margin-left: 12px;
+}
+
+/* ================================
+   ✅ 行動裝置優化
+================================ */
+@media (max-width: 768px){
+  #zohoSupportWebToCase .zsFormClass{
+    padding: 16px 14px;
+  }
+  #zohoSupportWebToCase .zsFormClass td:first-child{
+    width: 100%;
+    padding-top: 10px;
+  }
+}
+</style>
+
+    
   </style>
 
   <!-- ===== Zoho 必要 JS（含 encoder）===== -->

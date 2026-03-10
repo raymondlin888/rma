@@ -585,7 +585,7 @@
 
     function zsRenderCloudAttachments(zsCloudPickerAttachmentsJSON){
       if(!jQuery.isEmptyObject(zsCloudPickerAttachmentsJSON)){
-        jQuery.each(zsCloudPickerAttachmentsJSON, function(cloudServiceName, attachments){
+        jQuery.each(zsCloudPickerAttachmentsJSON, function(cloudServiceName, attachments){ 
           var zsAttachmentsArray = [];
           if(!jQuery.isEmptyObject(zsCloudPickerJSON[cloudServiceName])) zsAttachmentsArray = zsCloudPickerJSON[cloudServiceName];
 

@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <META HTTP-EQUIV='content-type' CONTENT='text/html; charset=UTF-8'>
 
-  <!-- ========== (A) 原本乙的基礎 style：保留 ========== -->
+  <!-- ===== 基礎樣式（保留 Zoho 原生）===== -->
   <style>
     #zohoSupportWebToCase textarea,
     #zohoSupportWebToCase input[type='text'],
     #zohoSupportWebToCase input[type='date'],
     #zohoSupportWebToCase select,
-    .wb_common {width: 280px;}
+    .wb_common{width: 280px;}
     #zohoSupportWebToCase td {padding: 11px 5px;}
     #zohoSupportWebToCase textarea,
     #zohoSupportWebToCase input[type='text'],
@@ -41,18 +41,14 @@
       overflow-y:auto;
     }
     #zohoSupportWebToCase .wb_multi_pick_label {display: block;}
-    #zohoSupportWebToCase .wb_multi_pick_input, .wb_multi_pick_input_all{
-      vertical-align: middle;
-      margin-right: 5px;
+    #zohoSupportWebToCase .wb_multi_pick_input,  .wb_multi_pick_input_all{
+      vertical-align: middle;margin-right: 5px;
     }
     .zsFormClass{background-color:#FFFFFF;width:600px}
   </style>
 
-  <style>
-    .zsFontClass{color:#000000;font-family:Arial;font-size:13px}
-  </style>
+  <style>.zsFontClass{color:#000000;font-family:Arial;font-size:13px}</style>
 
-  <!-- ========== (B) 原本 Zoho 附件/驗證碼 style：保留 ========== -->
   <style>
     .manfieldbdr{border-left: 1px solid #ff6448!important}
     .hleft{text-align:left;}
@@ -69,70 +65,44 @@
     #tooltip-zc{
       font: normal 12px Arial, Helvetica, sans-serif;
       line-height:18px;
-      position:absolute;
-      padding:8px;
-      margin:20px 0 0;
-      background:#fff;
-      border:1px solid #528dd1;
-      border-radius:5px;
+      position:absolute;padding:8px;margin:20px 0 0;
+      background:#fff;border:1px solid #528dd1;border-radius:5px;
       box-shadow:5px 5px 20px rgba(0,0,0,0.2);
-      z-index:10000;
-      color:#777
+      z-index:10000; color:#777
     }
     .wtcmanfield{
-      color:#f00;
-      font-size:16px;
-      position:relative;
-      top:2px;
-      left:1px;
+      color:#f00;font-size:16px;position:relative;top:2px;left:1px;
     }
     #zsCloudAttachmentIframe{
-      width: 100%;
-      height: 100%;
+      width: 100%;height: 100%;
       z-index: 99999!important;
-      position: fixed;
-      left: 0px;
-      top:0px;
-      border-style: none;
-      display: none;
-      background-color:#fff;
+      position: fixed;left: 0px;top:0px;
+      border-style: none;display: none;background-color:#fff;
     }
     .wtchelpinfo{
-      background-position: -246px -485px;
-      width:15px;height:15px;
-      display:inline-block;
-      position: relative;
-      top: 2px;
+      background-position: -246px -485px;width:15px;height:15px;
+      display:inline-block;position: relative;top: 2px;
       background-image: url(https://static.zohocdn.com/zohodeskstatic/app/images/zs-mpro.b6c9cf2347c62390fdcb.png);
     }
     .zsMaxSizeMessage{font-size:13px;}
   </style>
 
-  <!-- ========== (C) ✅ 套用程式甲的 UI/排版 style：新增 ========== -->
+  <!-- ===== 程式甲 UI 強化（卡片化、分欄、分隔線、按鈕、Product Info 卡片）===== -->
   <style>
-    /* 基本 */
     #zohoSupportWebToCase .zsFormClass{background:#fff;width:600px;}
     #zohoSupportWebToCase td{padding:11px 5px; vertical-align:top;}
     #zohoSupportWebToCase label{
-      font-family:Arial;
-      font-size:13px;
-      color:#000;
-      display:block;
-      margin-bottom:4px;
+      font-family:Arial;font-size:13px;color:#000;
+      display:block;margin-bottom:4px;
     }
     #zohoSupportWebToCase input[type="text"],
     #zohoSupportWebToCase textarea{
-      border:1px solid #ddd;
-      padding:6px 8px;
-      border-radius:3px;
-      width:100%;
-      box-sizing:border-box;
-      font-family:Arial;
-      font-size:13px;
+      border:1px solid #ddd;padding:6px 8px;border-radius:3px;width:100%;
+      box-sizing:border-box;font-family:Arial;font-size:13px;
     }
     #zohoSupportWebToCase textarea{min-height:110px; resize:vertical;}
 
-    /* Mandatory 左紅線 */
+    /* Mandatory 左紅線（加粗） */
     #zohoSupportWebToCase .manfieldbdr{border-left: 3px solid #ff6448!important;}
 
     /* 多欄同列 */
@@ -141,165 +111,82 @@
 
     /* 分隔線 */
     #zohoSupportWebToCase .section-divider td{padding: 6px 5px;}
-    #zohoSupportWebToCase .hr-line{
-      height: 1px;
-      background: #e6e6e6;
-      width: 100%;
-    }
+    #zohoSupportWebToCase .hr-line{height:1px;background:#e6e6e6;width:100%;}
 
-    /* 表單外框卡片化 */
+    /* 外框卡片化 */
     #zohoSupportWebToCase .zsFormClass{
-      background: #fff;
-      width: 600px;
-      border: 1px solid #e6e6e6;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      padding: 8px 10px;
-      border-collapse: separate;
-      border-spacing: 0;
-      overflow: hidden;
+      background:#fff;width:600px;
+      border:1px solid #e6e6e6;border-radius:10px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      padding:8px 10px;
+      border-collapse:separate;border-spacing:0;overflow:hidden;
     }
     #zohoSupportWebToCase .zsFormClass tr:not(.section-divider) td{
-      border-bottom: 1px solid #f2f2f2;
+      border-bottom:1px solid #f2f2f2;
     }
-    #zohoSupportWebToCase .zsFormClass tr:last-child td{border-bottom: none;}
-  </style>
+    #zohoSupportWebToCase .zsFormClass tr:last-child td{border-bottom:none;}
 
-  <!-- ========== (D) ✅ 程式甲：按鈕與 Product Info 動態列 style：新增 ========== -->
-  <style>
+    /* 按鈕 */
     #zohoSupportWebToCase .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      border-radius:8px;
-      border:1px solid transparent;
-      font-family: Arial;
-      font-size:13px;
-      line-height:1;
-      cursor:pointer;
-      user-select:none;
-      transition: all .15s ease;
-      white-space:nowrap;
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      border-radius:8px;border:1px solid transparent;
+      font-family: Arial;font-size:13px;line-height:1;
+      cursor:pointer;user-select:none;transition: all .15s ease;white-space:nowrap;
     }
-    #zohoSupportWebToCase .btn-sm{
-      padding:7px 12px;
-      min-height:30px;
-    }
+    #zohoSupportWebToCase .btn-sm{padding:7px 12px;min-height:30px;}
     #zohoSupportWebToCase .btn-primary{
       background: linear-gradient(180deg, #2f7cf6 0%, #1f67e8 100%);
-      color:#fff;
-      border-color: rgba(0,0,0,.06);
+      color:#fff;border-color: rgba(0,0,0,.06);
       box-shadow: 0 6px 14px rgba(31, 103, 232, 0.18);
     }
-    #zohoSupportWebToCase .btn-primary:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(31, 103, 232, 0.22);
-    }
-    #zohoSupportWebToCase .btn-primary:active{
-      transform: translateY(0);
-      box-shadow: 0 6px 14px rgba(31, 103, 232, 0.16);
-    }
+    #zohoSupportWebToCase .btn-primary:hover{transform: translateY(-1px);box-shadow:0 10px 18px rgba(31,103,232,0.22);}
+    #zohoSupportWebToCase .btn-primary:active{transform: translateY(0);box-shadow:0 6px 14px rgba(31,103,232,0.16);}
 
     #zohoSupportWebToCase .icon-btn{
-      width:26px;
-      height:26px;
-      border-radius:8px;
-      border:1px solid #f1c7c7;
-      background:#fff;
-      color:#d93025;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      transition: all .15s ease;
-      padding:0;
-      line-height:1;
+      width:26px;height:26px;border-radius:8px;
+      border:1px solid #f1c7c7;background:#fff;color:#d93025;
+      cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+      transition: all .15s ease;padding:0;line-height:1;
     }
-    #zohoSupportWebToCase .icon-btn:hover{
-      background:#fff5f5;
-      border-color:#f0b3b3;
-    }
-    #zohoSupportWebToCase .icon-btn:active{
-      background:#ffecec;
-    }
+    #zohoSupportWebToCase .icon-btn:hover{background:#fff5f5;border-color:#f0b3b3;}
+    #zohoSupportWebToCase .icon-btn:active{background:#ffecec;}
 
-    #zohoSupportWebToCase .prod-toolbar{
-      display:flex;
-      justify-content:flex-start;
-      align-items:center;
-      margin: 0 0 8px 0;
-    }
-
-    #zohoSupportWebToCase #prodRows{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
+    /* Product Info */
+    #zohoSupportWebToCase .prod-toolbar{display:flex;justify-content:flex-start;align-items:center;margin:0 0 8px 0;}
+    #zohoSupportWebToCase #prodRows{display:flex;flex-direction:column;gap:10px;}
     #zohoSupportWebToCase .prod-item{
-      border:1px solid #e8e8e8;
-      border-radius:10px;
-      padding:10px 10px 12px;
-      background:#fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      border:1px solid #e8e8e8;border-radius:10px;padding:10px 10px 12px;
+      background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.04);
       transition: box-shadow .15s ease, transform .15s ease;
     }
-    #zohoSupportWebToCase .prod-item:hover{
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-      transform: translateY(-1px);
-    }
-    #zohoSupportWebToCase .prod-item:nth-child(even){
-      background: #f7fbff;
-    }
-
+    #zohoSupportWebToCase .prod-item:hover{box-shadow:0 6px 16px rgba(0,0,0,0.08);transform: translateY(-1px);}
+    #zohoSupportWebToCase .prod-item:nth-child(even){background:#f7fbff;}
     #zohoSupportWebToCase .prod-row{
       display:grid;
-      grid-template-columns: 34px 1.15fr 1.15fr 0.55fr 1.15fr; /* 刪除 / Model / SN / Qty / FailureCode */
-      gap:12px;
-      align-items:end;
-      padding: 0;
+      grid-template-columns: 34px 1.15fr 1.15fr 0.55fr 1.15fr;
+      gap:12px;align-items:end;
     }
-
-    #zohoSupportWebToCase .prod-del{
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      padding-top: 22px;
-    }
+    #zohoSupportWebToCase .prod-del{display:flex;align-items:flex-start;justify-content:center;padding-top:22px;}
 
     @media (max-width: 640px){
-      #zohoSupportWebToCase .prod-row{
-        grid-template-columns: 34px 1fr 1fr;
-      }
+      #zohoSupportWebToCase .prod-row{grid-template-columns: 34px 1fr 1fr;}
     }
 
-    /* 提交/重置：黑字 + 乾淨按鈕 */
+    /* 提交/重置 */
     #zohoSupportWebToCase input[type="submit"],
     #zohoSupportWebToCase input[type="button"]{
-      color:#000;
-      background:#ffffff;
-      border:1px solid #d0d0d0;
-      border-radius:8px;
-      padding:8px 20px;
-      font-size:13px;
-      cursor:pointer;
-      transition: all .15s ease;
+      color:#000;background:#ffffff;border:1px solid #d0d0d0;border-radius:8px;
+      padding:8px 20px;font-size:13px;cursor:pointer;transition: all .15s ease;
     }
     #zohoSupportWebToCase input[type="submit"]:hover,
-    #zohoSupportWebToCase input[type="button"]:hover{
-      background:#f5f5f5;
-      border-color:#bdbdbd;
-    }
+    #zohoSupportWebToCase input[type="button"]:hover{background:#f5f5f5;border-color:#bdbdbd;}
     #zohoSupportWebToCase input[type="submit"]:active,
-    #zohoSupportWebToCase input[type="button"]:active{
-      background:#eeeeee;
-    }
+    #zohoSupportWebToCase input[type="button"]:active{background:#eeeeee;}
   </style>
 
-  <script src='https://static.zohocdn.com/zohodeskstatic/app/js/jqueryandencoder.ef05974972bf3bca1b87.js'></script>
+  <script src="https://static.zohocdn.com/zohodeskstatic/app/js/jqueryandencoder.ef05974972bf3bca1b87.js"></script>
 
-  <!-- ========== (E) ✅ 原本乙的 Zoho 官方 JS：保留，但把 formId 改成 1276964000000470001 ========== -->
+  <!-- ===== Zoho 官方 JS（保留新公司 Form ID：1276964000000470001）===== -->
   <script>
     window.addEventListener('pageshow', function () {
       const submitButton = document.getElementById('zsSubmitButton_1276964000000470001');
@@ -314,6 +201,7 @@
     });
 
     function trimBoth(str){return jQuery.trim(str);}
+
     function setAllDependancyFieldsMapping(){
       var mapDependancyLabels = getMapDependenySelectValues(jQuery("[id='property(module)']").val(), "JSON_MAP_DEP_LABELS");
       if(mapDependancyLabels){
@@ -324,11 +212,13 @@
         }
       }
     }
+
     function getMapDependenySelectValues(module, key){
       var dependencyObj = jQuery.parseJSON( jQuery("[id='dependent_field_values_" + module + "']").val() );
       if(dependencyObj == undefined){return dependencyObj;}
       return dependencyObj[key];
     }
+
     function setDependent(obj, isload){
       var name = obj.id || (obj[0] && obj[0].id) || "";
       var module = jQuery("[id='property(module)']").val();
@@ -405,32 +295,6 @@
       }
     }
 
-    function setSelectAll(id){
-      var parentElement = document.getElementById(id);
-      var hiddenInput = parentElement.querySelector('#hiddenoptions');
-      var selectAllElement = parentElement.querySelector('#selectall' + id);
-      var selectedValues = [];
-      var checkboxes = parentElement.querySelectorAll('.wb_multi_pick_input');
-      checkboxes.forEach(function (cb) {
-        cb.checked = selectAllElement.checked;
-        if (cb.checked && cb.value) selectedValues.push(cb.value);
-      });
-      hiddenInput.value = selectedValues.join(',');
-    }
-    function setMultiSelectOption(id, obj){
-      var parentElement = document.getElementById(id);
-      var hiddenInput = parentElement.querySelector('#hiddenoptions');
-      var selectAllElement = parentElement.querySelector('#selectall' + id);
-      var selectedStr = hiddenInput.value;
-      var selectedValues = selectedStr ? selectedStr.split(',') : [];
-      if(obj.checked && obj.value) selectedValues.push(obj.value);
-      else if(!obj.checked && obj.value){
-        selectedValues.splice(selectedValues.indexOf(obj.value), 1);
-        selectAllElement.checked = false;
-      }else selectAllElement.checked = false;
-      hiddenInput.value = selectedValues.join(',');
-    }
-
     var zctt = function(){
       var tt, mw = 400, top = 10, left = 0, doctt = document;
       var ieb = doctt.all ? true : false;
@@ -486,6 +350,7 @@
 
     function zsValidateMandatoryFields(){
       var isError = 0;
+
       for(var index = 0; index < zsWebFormMandatoryFields.length; index++){
         isError = 0;
         var fieldObject = document.forms['zsWebToCase_1276964000000470001'][zsWebFormMandatoryFields[index]];
@@ -524,18 +389,16 @@
         }
       }
 
-      if(isError == 0){
-        if(document.forms['zsWebToCase_1276964000000470001']['zsWebFormCaptchaWord'].value.replace(/^\s+|\s+$/g, '').length == 0){
-          alert('請輸入驗證碼。');
-          document.forms['zsWebToCase_1276964000000470001']['zsWebFormCaptchaWord'].focus();
-          return false;
-        }
+      if(document.forms['zsWebToCase_1276964000000470001']['zsWebFormCaptchaWord'].value.replace(/^\s+|\s+$/g, '').length == 0){
+        alert('請輸入驗證碼。');
+        document.forms['zsWebToCase_1276964000000470001']['zsWebFormCaptchaWord'].focus();
+        return false;
       }
 
-      if(isError == 0){
-        reformatAllDateFields();
-        document.getElementById('zsSubmitButton_1276964000000470001').setAttribute('disabled', 'disabled');
-      }
+      reformatAllDateFields();
+      document.getElementById('zsSubmitButton_1276964000000470001').setAttribute('disabled', 'disabled');
+
+      return true; // ✅ 重要：避免 undefined 導致 submit 被阻擋
     }
 
     var ZSEncoder = {
@@ -548,99 +411,6 @@
     var zsAttachedAttachmentsCount = 0;
     var zsAllowedAttachmentLimit = 4;
     var zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];
-
-    function zsOpenCloudPickerIframe(){
-      if(zsAttachedAttachmentsCount < 5){
-        var zsCloudPickerIframeSrc = jQuery('#zsCloudPickerIframeSrc').val();
-        jQuery('#zsCloudAttachmentIframe')
-          .attr('src', zsCloudPickerIframeSrc.substring(0, zsCloudPickerIframeSrc.length - 1) + (5 - zsAttachedAttachmentsCount))
-          .show();
-        zsListenCloudPickerMessages();
-      }
-    }
-    function zsListenCloudPickerMessages(){
-      if(window.addEventListener){window.addEventListener('message', zsWebReceiveMessage, false);}
-      else if(window.attachEvent){window.attachEvent('onmessage', zsWebReceiveMessage);}
-    }
-
-    var zsCloudPickerJSON = {};
-    function zsWebReceiveMessage(event){
-      var zsUrlRegex = /^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\:\'\/\\+=&amp;%\$#_]*)?$/;
-      if(zsUrlRegex.test(event.origin)){
-        var zsMessageType = event.data.split('&&&');
-        if(zsMessageType[0] == 'zsCloudPickerMessage'){
-          if(window.addEventListener){window.removeEventListener('message', zsWebReceiveMessage, false);}
-          else if(window.attachEvent){window.detachEvent('onmessage', zsWebReceiveMessage );}
-          jQuery('#zsCloudAttachmentIframe').hide();
-          var isAttachedFilesDetails = zsMessageType[1].split('|||');
-          if(isAttachedFilesDetails[0] == 'cloudPickerResponse'){
-            var zsCloudPickerAttachmentDetails = isAttachedFilesDetails[1].split('::::');
-            var zsCloudPickerAttachmentsJSON = jQuery.parseJSON(zsCloudPickerAttachmentDetails[0]);
-            if(zsAttachedAttachmentsCount <= zsAllowedAttachmentLimit){zsRenderCloudAttachments(zsCloudPickerAttachmentsJSON);}
-            else{alert('您無法附加超過5個以上的檔');return false;}
-          }
-        }
-      }
-    }
-
-    function zsRenderCloudAttachments(zsCloudPickerAttachmentsJSON){
-      if(!jQuery.isEmptyObject(zsCloudPickerAttachmentsJSON)){
-        jQuery.each(zsCloudPickerAttachmentsJSON, function(cloudServiceName, attachments){ 
-          var zsAttachmentsArray = [];
-          if(!jQuery.isEmptyObject(zsCloudPickerJSON[cloudServiceName])) zsAttachmentsArray = zsCloudPickerJSON[cloudServiceName];
-
-          for(var attachmentsIndex = 0; attachmentsIndex < attachments.length; attachmentsIndex++){
-            if(zsAttachedAttachmentsCount <= zsAllowedAttachmentLimit){
-              var attachmentsDetailJSON = attachments[attachmentsIndex];
-              var zsCloudAttachmentName = attachmentsDetailJSON['docName'];
-              var extension = zsCloudAttachmentName.split('.').pop().toLowerCase();
-              var unSupportedExtensions = ["ade","adp","apk","appx","appxbundle","bat","cab","cer","chm","cmd","com","cpl","dll","dmg","exe","hlp","hta","ins","iso","isp","jar","js","jse","lnk","mde","msc","msi","msix","msixbundle","msp","mst","nsh","pif","ps1","pst","reg","scr","sct","shb","sys","tmp","url","vb","vbe","vbs","vxd","wsc","wsf","wsh","terminal"];
-              if(unSupportedExtensions.indexOf(extension)!=-1){
-                alert("該檔未附加，因為其副檔名不受支援。");
-                continue;
-              }
-              zsAttachedAttachmentsCount = zsAttachedAttachmentsCount + 1;
-              var zsCloudAttachmentId = (attachmentsDetailJSON['docId']||'').replace(/\s/g, '');
-
-              var zsCloudAttachmentsList =
-                '<div class="filenamecls zsFontClass">'+ZSEncoder.encodeForHTML(zsCloudAttachmentName)+
-                '<a id="'+ ZSEncoder.encodeForHTMLAttribute(zsCloudAttachmentId) +
-                '" cloudservice="'+ ZSEncoder.encodeForHTMLAttribute(cloudServiceName) +
-                '" class="zscloudAttachment" style="margin-left:10px;" href="javascript:;">X</a></div>';
-
-              jQuery('#zsFileBrowseAttachments').append(zsCloudAttachmentsList);
-              zsAttachmentsArray.push(attachmentsDetailJSON);
-              zsCloudPickerJSON[cloudServiceName] = zsAttachmentsArray;
-              jQuery("input[name='zsCloudPickerAttachments']")[0].value = JSON.stringify(zsCloudPickerJSON);
-            }
-          }
-        });
-      }
-      zsChangeMousePointer();
-    }
-
-    jQuery(document).off('click.cAtm').on('click.cAtm','.zscloudAttachment', function(){
-      var cloudService = jQuery(this).attr('cloudservice');
-      var cloudAttachmentId = jQuery(this).attr('id');
-      var zsCloudAttachmentsArr = zsCloudPickerJSON[cloudService];
-      var isZsCloudAttachmentRemoved = 0;
-
-      for(var attachmentsIndex = 0; attachmentsIndex < zsCloudAttachmentsArr.length; attachmentsIndex++){
-        if(isZsCloudAttachmentRemoved != 1){
-          jQuery.each(zsCloudAttachmentsArr[attachmentsIndex], function(key, val){
-            if(key == 'docId' && (val||'').replace(/\s/g, '') == cloudAttachmentId){
-              var idx = jQuery.inArray(zsCloudAttachmentsArr[attachmentsIndex], zsCloudAttachmentsArr);
-              zsCloudAttachmentsArr.splice(idx, 1);
-              isZsCloudAttachmentRemoved = 1;
-            }
-          });
-        }
-      }
-      jQuery(this).parent().remove();
-      zsAttachedAttachmentsCount = zsAttachedAttachmentsCount - 1;
-      jQuery("input[name='zsCloudPickerAttachments']")[0].value = JSON.stringify(zsCloudPickerJSON);
-      zsChangeMousePointer();
-    });
 
     function zsRenderBrowseFileAttachment(zsAttachmentObject, zsAttachmentDetails){
       if(zsAttachmentObject != ''){
@@ -664,8 +434,8 @@
           }
           var zsCurrentAttachmentIdTokens = jQuery(zsAttachmentDetails).attr('id').split('_');
           var zsCurrentAttachmentId = parseInt(zsCurrentAttachmentIdTokens[1]);
-          var removeIdx = jQuery.inArray(zsCurrentAttachmentId, zsAttachmentFileBrowserIdsList);
-          zsAttachmentFileBrowserIdsList.splice(removeIdx, 1);
+          var zsAttachmentIdToBeRemoved = jQuery.inArray(zsCurrentAttachmentId, zsAttachmentFileBrowserIdsList);
+          zsAttachmentFileBrowserIdsList.splice(zsAttachmentIdToBeRemoved, 1);
           var zsNextAttachmentId = zsAttachmentFileBrowserIdsList[0];
           var zsnextAttachment = 'zsattachment_'+zsNextAttachmentId;
 
@@ -674,8 +444,9 @@
 
           jQuery('#zsFileBrowseAttachments').append(
             '<div class="filenamecls zsFontClass" id="file_'+zsCurrentAttachmentId+'">'+
-            ZSEncoder.encodeForHTML(zsFileName) +
-            '<a class="zsfilebrowseAttachment" style="margin-left:10px;" href="javascript:;" id="fileclose_'+zsCurrentAttachmentId+'">X</a></div>'
+              ZSEncoder.encodeForHTML(zsFileName) +
+              '<a class="zsfilebrowseAttachment" style="margin-left:10px;" href="javascript:;" id="fileclose_'+zsCurrentAttachmentId+'">X</a>'+
+            '</div>'
           );
           zsAttachedAttachmentsCount = zsAttachedAttachmentsCount + 1;
         }
@@ -701,9 +472,11 @@
         else jQuery('#zsattachment_'+fileIndex).hide();
       });
     }
+
     function zsOpenFileBrowseAttachment(clickEvent){
-      if(zsAttachedAttachmentsCount >= 5) clickEvent.preventDefault();
+      if(zsAttachedAttachmentsCount >= 5){ clickEvent.preventDefault(); }
     }
+
     function zsChangeMousePointer(){
       if(zsAttachedAttachmentsCount >= 5){
         jQuery('#zsMaxLimitMessage').show();
@@ -717,6 +490,7 @@
     }
 
     function zsShowCaptcha(){jQuery('#zsCaptchaLoading').hide();jQuery('#zsCaptcha').show();}
+
     function zsRegenerateCaptcha(){
       var webFormxhr = new XMLHttpRequest();
       webFormxhr.open('GET','https://desk.zoho.com/support/GenerateCaptcha?action=getNewCaptcha&_='+new Date().getTime(),true);
@@ -734,7 +508,7 @@
     }
 
     document.addEventListener('readystatechange',function(){
-      if(document.readyState === 'complete' && window.zsRegenerateCaptcha ){zsRegenerateCaptcha();}
+      if(document.readyState === 'complete' && window.zsRegenerateCaptcha ){ zsRegenerateCaptcha(); }
       setAllDependancyFieldsMapping();
       document.getElementById('zsSubmitButton_1276964000000470001').removeAttribute('disabled');
       zsAttachedAttachmentsCount = 0;
@@ -752,10 +526,6 @@
       zsAttachedAttachmentsCount = 0;
       zsAttachmentFileBrowserIdsList = [1, 2, 3, 4, 5];
       jQuery('#zsFileBrowseAttachments').html('');
-      zsCloudPickerJSON = {};
-      if(document.forms['zsWebToCase_'+webFormId]['zsCloudPickerAttachments'] != undefined){
-        document.forms['zsWebToCase_'+webFormId]['zsCloudPickerAttachments'].value = JSON.stringify({});
-      }
       zsRearrangeFileBrowseAttachments();
       zsChangeMousePointer();
     }
@@ -763,13 +533,255 @@
 </head>
 
 <body>
-  <div id='zohoSupportWebToCase' align='center'>
-    <form name='zsWebToCase_1276964000000470001'
-          id='zsWebToCase_1276964000000470001'
-          action='https://desk.zoho.com/support/WebToCase'
-          method='POST'
-          onSubmit='return zsValidateMandatoryFields()'
-          enctype='multipart/form-data'>
+  <div id="zohoSupportWebToCase" align="center">
+    <form name="zsWebToCase_1276964000000470001"
+          id="zsWebToCase_1276964000000470001"
+          action="https://desk.zoho.com/support/WebToCase"
+          method="POST"
+          onsubmit="return zsValidateMandatoryFields()"
+          enctype="multipart/form-data">
 
-      <!-- ✅ 保留乙的 Token / returnURL -->
-      <input type='hidden' name='xnQsjsdp' value='edbsn8d9cdbf85950ae6192d0cb8377aae594'/>
+      <!-- ✅ 新公司 Token / returnURL：保留 -->
+      <input type="hidden" name="xnQsjsdp" value="edbsn8d9cdbf85950ae6192d0cb8377aae594"/>
+      <input type="hidden" name="xmIwtLD" value="edbsnf9ba4bd44e524af7500641fb0dc03f8dab09dcba0ddd2f5a12eb77f67ed9946d"/>
+      <input type="hidden" name="xJdfEaS" value=""/>
+      <input type="hidden" name="actionType" value="Q2FzZXM="/>
+      <input type="hidden" id="property(module)" value="Cases"/>
+      <input type="hidden" id="dependent_field_values_Cases" value="{&quot;JSON_VALUES&quot;:{},&quot;JSON_SELECT_VALUES&quot;:{},&quot;JSON_MAP_DEP_LABELS&quot;:[]}"/>
+      <input type="hidden" name="returnURL" value="https://www.google.com"/>
+
+      <!-- ✅ 可視表單開始（避免只剩 hidden inputs 造成空白） -->
+      <table border="0" cellspacing="0" class="zsFormClass">
+        <tr>
+          <td colspan="2" class="zsFontClass"><strong>RMA Repair Request</strong></td>
+        </tr>
+
+        <!-- Subject -->
+        <tr>
+          <td width="25%" align="left" class="zsFontClass">
+            <label>Subject <span class="wtcmanfield">*</span></label>
+          </td>
+          <td width="75%" align="left">
+            <input type="text" maxlength="255" name="Subject" value="" class="manfieldbdr"/>
+          </td>
+        </tr>
+
+        <!-- Customer + Contact -->
+        <tr>
+          <td width="25%" align="left" class="zsFontClass">
+            <label>Customer / Contact Name <span class="wtcmanfield">*</span></label>
+          </td>
+          <td width="75%" align="left">
+            <div class="row-flex">
+              <div class="col">
+                <label>Customer Name</label>
+                <input type="text" maxlength="120" name="Customer Name" value=""/>
+              </div>
+              <div class="col">
+                <label>Contact Name</label>
+                <input type="text" maxlength="120" name="Contact Name" class="manfieldbdr"/>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Email + Address -->
+        <tr>
+          <td width="25%" align="left" class="zsFontClass">
+            <label>Email / Address <span class="wtcmanfield">*</span></label>
+          </td>
+          <td width="75%" align="left">
+            <div class="row-flex">
+              <div class="col">
+                <label>Email</label>
+                <input type="text" maxlength="120" name="Email" value="" class="manfieldbdr"/>
+              </div>
+              <div class="col">
+                <label>Address</label>
+                <input type="text" maxlength="120" name="Address" value=""/>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- 分隔線 -->
+        <tr class="section-divider">
+          <td colspan="2"><div class="hr-line"></div></td>
+        </tr>
+
+        <!-- Product Info（動態多筆） -->
+        <tr>
+          <td width="25%" align="left" class="zsFontClass">
+            <label>Product Info</label>
+          </td>
+          <td width="75%" align="left">
+            <div class="prod-toolbar">
+              <button type="button" id="addRow" class="btn btn-primary btn-sm">+ 新增一筆產品</button>
+            </div>
+
+            <div id="prodRows">
+              <div class="prod-item">
+                <div class="prod-row">
+                  <div class="prod-del">
+                    <button type="button" class="icon-btn removeRow" title="刪除">✕</button>
+                  </div>
+                  <div class="prod-field">
+                    <label>Model</label>
+                    <input type="text" class="p-model" maxlength="120"/>
+                  </div>
+                  <div class="prod-field">
+                    <label>SN</label>
+                    <input type="text" class="p-sn" maxlength="120"/>
+                  </div>
+                  <div class="prod-field">
+                    <label>Qty</label>
+                    <input type="text" class="p-qty" inputmode="numeric" pattern="[0-9]*" maxlength="10"/>
+                  </div>
+                  <div class="prod-field">
+                    <label>FailureCode</label>
+                    <input type="text" class="p-fc" maxlength="120"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ✅ 彙整後送出（多行文字） -->
+            <textarea name="Product_Details" id="Product_Details" style="display:none;"></textarea>
+          </td>
+        </tr>
+
+        <!-- Remark -->
+        <tr>
+          <td width="25%" align="left" class="zsFontClass">
+            <label>Remark</label>
+          </td>
+          <td width="75%" align="left">
+            <textarea name="Remark" maxlength="3000"></textarea>
+          </td>
+        </tr>
+
+        <!-- 附件 -->
+        <tr>
+          <td width="25%" align="left" class="zsFontClass">
+            <label>附件</label>
+          </td>
+          <td width="75%" align="left">
+            <span class="zsFontClass wtcuploadfile" id="zsBrowseAttachment">附加檔</span>
+
+            <input class="wtcuploadinput" type="file" name="attachment_1" id="zsattachment_1"
+              style="display:block;" onclick="zsOpenFileBrowseAttachment(event)"
+              onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+
+            <input class="wtcuploadinput" type="file" name="attachment_2" id="zsattachment_2"
+              style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+              onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+
+            <input class="wtcuploadinput" type="file" name="attachment_3" id="zsattachment_3"
+              style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+              onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+
+            <input class="wtcuploadinput" type="file" name="attachment_4" id="zsattachment_4"
+              style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+              onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+
+            <input class="wtcuploadinput" type="file" name="attachment_5" id="zsattachment_5"
+              style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+              onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+
+            <div class="clboth"></div>
+            <span id="zsMaxSizeMessage" style="color:black;font-size: 8px;float: left;">
+              您每個檔的大小可高達20MB。
+            </span>
+            <span id="zsMaxLimitMessage" style="color:black;font-size: 8px;float: left;margin-left: 14px;display: none;">
+              您可以一次性地附加多達5 個檔。
+            </span>
+            <div id="zsFileBrowseAttachments"></div>
+          </td>
+        </tr>
+
+        <!-- 驗證碼 -->
+        <tr>
+          <td nowrap class="zsFontClass" width="25%" align="left">驗證碼&nbsp;</td>
+          <td>
+            <div id="zsCaptchaLoading"><strong>載入中...<br><br></strong></div>
+            <div id="zsCaptcha" style="display:none;">
+              <img src="#" id="zsCaptchaUrl" name="zsCaptchaImage">
+              <a href="javascript:;" style="color:#00a3fe; cursor:pointer; margin-left:10px; vertical-align:middle;text-decoration:none;"
+                 class="zsFontClass" onclick="zsRegenerateCaptcha()">刷新</a>
+            </div>
+            <div>
+              <input type="text" name="zsWebFormCaptchaWord"/>
+              <input type="hidden" name="zsCaptchaSrc" value=""/>
+            </div>
+          </td>
+        </tr>
+
+        <!-- 提交/重置 -->
+        <tr>
+          <td style="padding: 11px 5px 0px 5px;" colspan="2" align="center">
+            <input type="submit" id="zsSubmitButton_1276964000000470001" class="zsFontClass" value="提交">
+            &nbsp;&nbsp;
+            <input type="button" class="zsFontClass" value="重置" onclick="zsResetWebForm('1276964000000470001')">
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td width="25%" align="left"></td>
+          <td style="padding: 0px 5px;" align="left" width="75%">
+            <div class="wb_FtCon wb_common">
+              <span>技術支援方： </span>
+              <a target="_blank" rel="noopener noreferrer" href="https://zoho.com/desk" class="wb_logoCon">
+                <img class="wb_logo" src="https://static.zohocdn.com/zohtTemplateItem(){ return prodRows.querySelector('.prod-item'); }
+
+      addRowBtn.addEventListener('click', () => {
+        const tpl = getTemplateItem();
+        if(!tpl) return;
+
+        const clone = tpl.cloneNode(true);
+        clone.querySelectorAll('input').forEach(i => i.value = '');
+        prodRows.appendChild(clone);
+      });
+
+      prodRows.addEventListener('click', (e) => {
+        const btn = e.target.closest('.removeRow');
+        if(!btn) return;
+
+        const items = prodRows.querySelectorAll('.prod-item');
+        if(items.length <= 1) return; // 至少保留一筆
+
+        const item = e.target.closest('.prod-item');
+        if(item) item.remove();
+      });
+
+      prodRows.addEventListener('input', (e) => {
+        if(e.target.classList.contains('p-qty')) digitsOnly(e.target);
+      });
+
+      form.addEventListener('submit', () => {
+        const items = [...prodRows.querySelectorAll('.prod-item')];
+
+        const lines = items.map((item, idx) => {
+          const r = item.querySelector('.prod-row');
+          const model = r.querySelector('.p-model')?.value.trim() || '';
+          const sn    = r.querySelector('.p-sn')?.value.trim() || '';
+          const qty   = r.querySelector('.p-qty')?.value.trim() || '';
+          const fc    = r.querySelector('.p-fc')?.value.trim() || '';
+
+          if(!model && !sn && !qty && !fc) return null;
+
+          return [
+            `#${idx+1}`,
+            model ? `Model=${model}` : null,
+            sn    ? `SN=${sn}` : null,
+            qty   ? `Qty=${qty}` : null,
+            fc    ? `FailureCode=${fc}` : null
+          ].filter(Boolean).join(' ; ');
+        }).filter(Boolean);
+
+        hidden.value = lines.join('\n');
+      });
+    })();
+  </script>
+</body>
+</html>

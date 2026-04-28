@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>RMA Repair Request</title>
+
+  <!-- ===== 套用第二份的 WebUI 風格（卡片化 / 全寬輸入 / focus 高亮 / 主色按鈕）===== -->
+  <style>
+    /* 基礎字體 */
+    .zsFontClass{color:#000000;font-family:Arial;font-size:13px}
+
+    /* 表單卡片化（參考第二份風格） */
+    #zohoSupportWebToCase .zsFormClass{
+      max-width: 760px;
+      margin: 24px auto;
+      background: #ffffff;
+      border: 1px solid #dcdcdc;
+      border-radius: 14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+      padding: 20px 22px 26px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /* 標題列 */
+    #zohoSupportWebToCase .zsFormClass tr:first-child td{
+      font-size: 20px;
+      font-weight: 700;
+      padding: 10px 5px 18px;
+      border-bottom: 2px solid #e6e6e6;
+    }
+
+    /* 列距與對齊 */
+    #zohoSupportWebToCase td{
+      padding: 12px 8px;
+      vertical-align: top;
+    }
+
+    /* 左側 label 欄 */
+    #zohoSupportWebToCase .zsFormClass td:first-child{
+      font-weight: 600;
+      color: #333;
+      padding-top: 18px;
+      width: 28%;
+      white-space: nowrap;
+    }
+
+    /* 欄位輸入：全寬一致化 */
+    #zohoSupportWebToCase textarea,
+    #zohoSupportWebToCase input[type="text"],
+    #zohoSupportWebToCase input[type="date"],
+    #zohoSupportWebToCase select{
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #cfcfcf;
+      transition: border-color .15s ease, box-shadow .15s ease;
+      background: #fff;
+    }
+
+    #zohoSupportWebToCase textarea{min-height:110px; resize:vertical;}
+    #zohoSupportWebToCase select{box-sizing: border-box;}
+
+    /* Focus 狀態 */
+    #zohoSupportWebToCase input[type="text"]:focus,
+    #zohoSupportWebToCase input[type="date"]:focus,
+    #zohoSupportWebToCase textarea:focus,
+    #zohoSupportWebToCase select:focus{
+      outline: none;
+      border-color: #2f7cf6;
+      box-shadow: 0 0 0 3px rgba(47,124,246,0.15);
+    }
+
+    /* Mandatory 左紅線 + 星號 */
+    .manfieldbdr{border-left: 3px solid #ff6448!important}
+    .wtcmanfield{color:#f00;font-size:16px;position:relative;top:2px;left:1px;}
+
+    /* 分隔線（可選，這份表單目前未插入分隔列，但樣式先備好） */
+    #zohoSupportWebToCase .section-divider td{padding:6px 8px;}
+    #zohoSupportWebToCase .hr-line{
+      height: 1px;
+      background: linear-gradient(to right, transparent, #dcdcdc, transparent);
+      margin: 8px 0;
+      width: 100%;
+    }
+
+    /* 附件顯示（沿用 Zoho 既有 class） */
+    .wtcuploadinput{cursor:pointer; float:left; width:62px; margin-top:-20px; opacity:0; clear:both;}
+    .wtcuploadfile{float:left;color:#00a3fe;cursor:pointer; user-select:none;}
+    .filenamecls{margin-right:15px; float:left; margin-top:5px;}
+    .clboth{clear:both;}
+    #zsFileBrowseAttachments{clear:both; margin:5px 0px 10px;}
+
+    /* 提交/重置：第二份風格（提交主色） */
+    #zohoSupportWebToCase input[type="submit"]{
+      background: #2f7cf6;
+      color: #fff;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor:pointer;
+      transition: all .15s ease;
+      margin-right: 10px;
+    }
+    #zohoSupportWebToCase input[type="submit"]:hover{background:#1f67e8;}
+    #zohoSupportWebToCase input[type="button"]{
+      color:#000;background:#fff;border:1px solid #d0d0d0;border-radius:8px;
+      padding:10px 28px;font-size:14px;cursor:pointer;transition: all .15s ease;
+    }
+    #zohoSupportWebToCase input[type="button"]:hover{background:#f5f5f5;border-color:#bdbdbd;}
+
+    /* Footer 對齊（保留第一份的呈現） */
+    .wb_common{width: 280px;}
+    .wb_FtCon{display:flex;align-items:center;justify-content:flex-end;margin-top:15px;padding-left:10px}
+    .wb_logoCon{display:flex;margin-left:5px}
+    .wb_logo{max-width:16px;max-height:16px;}
+
+    /* 行動裝置 */
+    @media (max-width: 768px){
+      #zohoSupportWebToCase .zsFormClass{padding: 16px 14px;}
+      #zohoSupportWebToCase .zsFormClass td:first-child{
+        width: 100%;
+        padding-top: 10px;
+        white-space: normal;
+      }
+    }
+  </style>
+
+  <!-- Zoho encoder -->
+  <script src="https://static.zohocdn.com/zohodeskstatic/app/js/jqueryandencoder.ef05974972bf3bca1b87.js"></script>
+
+  <!-- ===== 依第二份的方式：精簡但可用的附件 + Captcha + 必填驗證（並修正 return true）===== -->
+  <script>
+    // ---- 基本設定（沿用第一份的 Form ID）----
+    var FORM_ID   = "1305363000000436005";
+    var FORM_NAME = "zsWebToCase_" + FORM_ID;
+    var SUBMIT_ID = "zsSubmitButton_" + FORM_ID;
+
+    // 第一份的必填欄位
+    var zsWebFormMandatoryFields = ["Contact Name","Email","Subject"];
+    var zsFieldsDisplayLabelArray = ["姓","郵件","主題"];
+
+    //（第一份原本 Classification 有 onchange="setDependent(...)"，但依你內容 dependent map 是空的；
+    //  為避免 JS error，保留一個 no-op stub）
+    function setDependent(){ /* no-op */ }
+
+    // encoder（Zoho 原本用法）
+    var ZSEncoder = {
+      encodeForHTML : function(str){ if(str && typeof(str)==='string'){ return jQuery.encoder.encodeForHTML(str);} return str; },
+      encodeForHTMLAttribute : function(str){ if(str && typeof(str)==='string'){ return jQuery.encoder.encodeForHTMLAttribute(str);} return str; }
+    };
+
+    // ---- 附件控制 ----
+    var zsAttachedAttachmentsCount = 0;
+    var zsAttachmentFileBrowserIdsList = [1,2,3,4,5];
+
+    function zsOpenFileBrowseAttachment(e){
+      if(zsAttachedAttachmentsCount >= 5){ e.preventDefault(); }
+    }
+
+    function zsRearrangeFileBrowseAttachments(){
+      jQuery.each(jQuery('input[type = file]'), function(fileIndex, fileObject){
+        fileIndex = fileIndex + 1;
+        if(fileIndex === zsAttachmentFileBrowserIdsList[0]) jQuery('#zsattachment_'+fileIndex).show();
+        else jQuery('#zsattachment_'+fileIndex).hide();
+      });
+    }
+
+    function zsChangeMousePointer(){
+      if(zsAttachedAttachmentsCount >= 5){
+        jQuery('#zsMaxLimitMessage').show();
+        jQuery('#zsattachment_1,#zsattachment_2,#zsattachment_3,#zsattachment_4,#zsattachment_5').hide();
+        jQuery('#zsBrowseAttachment').css('cursor','default');
+      }else{
+        jQuery('#zsMaxLimitMessage').hide();
+        zsRearrangeFileBrowseAttachments();
+        jQuery('#zsBrowseAttachment').css('cursor','pointer');
+      }
+    }
+
+    function zsRenderBrowseFileAttachment(zsAttachmentObject, zsAttachmentDetails){
+      if(zsAttachmentObject !== ''){
+        // size limit 20MB
+        if(zsAttachmentDetails.files && zsAttachmentDetails.files[0] && (zsAttachmentDetails.files[0].size/(1024*1024)) > 20){
+          zsAttachmentDetails.value = '';
+          alert('允許的檔大小上限為20MB。');
+          return;
+        }
+
+        if(zsAttachedAttachmentsCount < 5){
+          var zsFileName = '';
+          if(zsAttachmentObject.indexOf('\\\\') > -1){
+            var arr = zsAttachmentObject.split('\\\\');
+            zsFileName = arr[arr.length - 1];
+          }else{
+            zsFileName = zsAttachmentObject;
+          }
+
+          // block unsupported ext
+          var extension = zsFileName.split('.').pop().toLowerCase();
+          var unSupportedExtensions = ["ade","adp","apk","appx","appxbundle","bat","cab","cer","chm","cmd","com","cpl","dll","dmg","exe","hlp","hta","ins","iso","isp","jar","js","jse","lnk","mde","msc","msi","msix","msixbundle","msp","mst","nsh","pif","ps1","pst","reg","scr","sct","shb","sys","tmp","url","vb","vbe","vbs","vxd","wsc","wsf","wsh","terminal"];
+          if(unSupportedExtensions.indexOf(extension) !== -1){
+            alert("該檔未附加，因為其副檔名不受支援。");
+            zsAttachmentDetails.value = '';
+            return;
+          }
+
+          var zsCurrentAttachmentId = parseInt(jQuery(zsAttachmentDetails).attr('id').split('_')[1], 10);
+          var idx = jQuery.inArray(zsCurrentAttachmentId, zsAttachmentFileBrowserIdsList);
+          if(idx !== -1) zsAttachmentFileBrowserIdsList.splice(idx, 1);
+
+          var zsNextAttachmentId = zsAttachmentFileBrowserIdsList[0];
+          jQuery('#zsattachment_'+zsCurrentAttachmentId).hide();
+          jQuery('#zsattachment_'+zsNextAttachmentId).show();
+
+          jQuery('#zsFileBrowseAttachments').append(
+            '<div class="filenamecls zsFontClass" id="file_'+zsCurrentAttachmentId+'">'+
+              ZSEncoder.encodeForHTML(zsFileName) +
+              '<a class="zsfilebrowseAttachment" style="margin-left:10px;" href="javascript:;" id="fileclose_'+zsCurrentAttachmentId+'">X</a>'+
+            '</div>'
+          );
+          zsAttachedAttachmentsCount++;
+        }
+      }
+      zsChangeMousePointer();
+    }
+
+    jQuery(document).off('click.fba').on('click.fba', '.zsfilebrowseAttachment', function(){
+      var currentlyDeleted = jQuery(this).attr('id').split('_')[1];
+      jQuery('#zsattachment_'+currentlyDeleted).val('');
+      jQuery('#zsattachment_'+currentlyDeleted).replaceWith(jQuery('#zsattachment_'+currentlyDeleted).clone());
+      jQuery(this).parent().remove();
+      zsAttachedAttachmentsCount--;
+      zsAttachmentFileBrowserIdsList.push(parseInt(currentlyDeleted, 10));
+      zsAttachmentFileBrowserIdsList.sort(function(a,b){return a-b;});
+      zsRearrangeFileBrowseAttachments();
+      zsChangeMousePointer();
+    });
+
+    // ---- Captcha ----
+    function zsShowCaptcha(){
+      jQuery('#zsCaptchaLoading').hide();
+      jQuery('#zsCaptcha').show();
+    }
+
+    function zsRegenerateCaptcha(){
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET','https://desk.zoho.com/support/GenerateCaptcha?action=getNewCaptcha&_=' + new Date().getTime(), true);
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+          try{
+            var response = JSON.parse(xhr.responseText || '{}');
+            jQuery('#zsCaptchaUrl').load(zsShowCaptcha);
+            document.getElementById('zsCaptchaUrl').src = response.captchaUrl;
+            document.getElementsByName('xJdfEaS')[0].value = response.captchaDigest;
+          }catch(e){}
+        }
+      };
+      xhr.send();
+    }
+
+    // ---- 驗證（關鍵：最後一定要 return true）----
+    function zsValidateMandatoryFields(){
+      var form = document.forms[FORM_NAME];
+
+      for(var i=0; i<zsWebFormMandatoryFields.length; i++){
+        var fname = zsWebFormMandatoryFields[i];
+        var field = form[fname];
+
+        if(field){
+          var val = (field.value || '').replace(/^\s+|\s+$/g,'');
+          if(val.length === 0){
+            alert(zsFieldsDisplayLabelArray[i] + ' 不能為空');
+            field.focus();
+            return false;
+          }
+          if(field.name === 'Email'){
+            var emailOk = /^([\w_][\w\-_.+\'&]*)@(?=.{4,256}$)(([\w]+)([\-_]*[\w])*[\.])+[a-zA-Z]{2,22}$/.test(field.value);
+            if(!emailOk){
+              alert('輸入一個有效的郵箱Id');
+              field.focus();
+              return false;
+            }
+          }
+        }
+      }
+
+      // captcha
+      if((form['zsWebFormCaptchaWord'].value || '').replace(/^\s+|\s+$/g,'').length === 0){
+        alert('請輸入驗證碼。');
+        form['zsWebFormCaptchaWord'].focus();
+        return false;
+      }
+
+      // disable submit to avoid double-click
+      document.getElementById(SUBMIT_ID).setAttribute('disabled', 'disabled');
+      return true; // ✅ 修正：確保可以提交
+    }
+
+    // ---- Reset ----
+    function zsResetWebForm(webFormId){
+      document.forms['zsWebToCase_'+webFormId].reset();
+      document.getElementById('zsSubmitButton_'+webFormId).removeAttribute('disabled');
+      zsAttachedAttachmentsCount = 0;
+      zsAttachmentFileBrowserIdsList = [1,2,3,4,5];
+      jQuery('#zsFileBrowseAttachments').html('');
+      zsRearrangeFileBrowseAttachments();
+      zsChangeMousePointer();
+      zsRegenerateCaptcha();
+    }
+
+    // ---- 初始化 ----
+    window.addEventListener('pageshow', function(){
+      var btn = document.getElementById(SUBMIT_ID);
+      if(btn) btn.removeAttribute('disabled');
+
+      var form = document.forms[FORM_NAME];
+      if(form && form['zsWebFormCaptchaWord'] && form['zsWebFormCaptchaWord'].value){
+        form['zsWebFormCaptchaWord'].value = '';
+      }
+
+      zsRegenerateCaptcha();
+      zsChangeMousePointer();
+    });
+
+    document.addEventListener('readystatechange', function(){
+      if(document.readyState === 'complete'){
+        zsRegenerateCaptcha();
+        zsChangeMousePointer();
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div id="zohoSupportWebToCase" align="center">
+    <form name="zsWebToCase_1305363000000436005"
+          id="zsWebToCase_1305363000000436005"
+          action="https://desk.zoho.com/support/WebToCase"
+          method="POST"
+          onsubmit="return zsValidateMandatoryFields()"
+          enctype="multipart/form-data">
+
+      <!-- ===== 保留第一份原本的 Token / 隱藏欄位 ===== -->
+      <input type="hidden" name="xnQsjsdp" value="edbsn9ddadcf5aa44daf5a94dc7d86ce90a09"/>
+      <input type="hidden" name="xmIwtLD" value="edbsnd81512468af693ace8452788d781bf96dd51f491110329feba13be5038337d4d"/>
+      <input type="hidden" name="xJdfEaS" value=""/>
+      <input type="hidden" name="actionType" value="Q2FzZXM="/>
+      <input type="hidden" id="property(module)" value="Cases"/>
+      <input type="hidden" id="dependent_field_values_Cases" value="{&quot;JSON_VALUES&quot;:{},&quot;JSON_SELECT_VALUES&quot;:{},&quot;JSON_MAP_DEP_LABELS&quot;:[]}"/>
+      <input type="hidden" name="returnURL" value="https://miiscs.zohodesk.com/portal"/>
+
+      <table border="0" cellspacing="0" class="zsFormClass">
+        <tr>
+          <td colspan="2" class="zsFontClass"><strong>RMA Repair Request</strong></td>
+        </tr>
+
+        <tr>
+          <td class="zsFontClass" align="left">姓 <span class="wtcmanfield">*</span></td>
+          <td align="left">
+            <input type="text" maxlength="120" name="Contact Name" class="manfieldbdr"/>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="zsFontClass" align="left">郵件 <span class="wtcmanfield">*</span></td>
+          <td align="left">
+            <input type="text" maxlength="120" name="Email" value="" class="manfieldbdr"/>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="zsFontClass" align="left">主題 <span class="wtcmanfield">*</span></td>
+          <td align="left">
+            <input type="text" maxlength="255" name="Subject" value="" class="manfieldbdr"/>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="zsFontClass" align="left">分類</td>
+          <td align="left">
+            <select name="Classification" id="Classification" onchange="setDependent(this,false)">
+              <option value="">-None-</option>
+              <option value="Question">Question</option>
+              <option value="Problem">Problem</option>
+              <option value="Feature">Feature</option>
+              <option value="Others">Others</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="zsFontClass" align="left">附件</td>
+          <td align="left">
+            <span class="zsFontClass wtcuploadfile" id="zsBrowseAttachment">附加檔</span>
+
+            <input class="wtcuploadinput" type="file" name="attachment_1" id="zsattachment_1"
+                   style="display:block;" onclick="zsOpenFileBrowseAttachment(event)"
+                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+            <input class="wtcuploadinput" type="file" name="attachment_2" id="zsattachment_2"
+                   style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+            <input class="wtcuploadinput" type="file" name="attachment_3" id="zsattachment_3"
+                   style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+            <input class="wtcuploadinput" type="file" name="attachment_4" id="zsattachment_4"
+                   style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+            <input class="wtcuploadinput" type="file" name="attachment_5" id="zsattachment_5"
+                   style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
+                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
+
+            <div class="clboth"></div>
+            <span id="zsMaxSizeMessage" style="color:black;font-size: 12px;float:left;">
+              您每個檔的大小可高達20MB。
+            </span>
+            <span id="zsMaxLimitMessage" style="color:black;font-size: 12px;float:left;margin-left: 14px;display:none;">
+              您可以一次性地附加多達5 個檔。
+            </span>
+            <div id="zsFileBrowseAttachments"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="zsFontClass" align="left">驗證碼 <span class="wtcmanfield">*</span></td>
+          <td>
+            <div id="zsCaptchaLoading"><strong>載入中...<br><br></strong></div>
+            <div id="zsCaptcha" style="display:none;">
+              <img src="#" id="zsCaptchaUrl" name="zsCaptchaImage" alt="captcha">
+              <a href="javascript:;" style="color:#00a3fe; cursor:pointer; margin-left:10px; vertical-align:middle;text-decoration:none;"
+                 class="zsFontClass" onclick="zsRegenerateCaptcha()">刷新</a>
+            </div>
+            <div>
+              <input type="text" name="zsWebFormCaptchaWord"/>
+              <input type="hidden" name="zsCaptchaSrc" value=""/>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" align="center" style="padding-top:16px;">
+            <input type="submit" id="zsSubmitButton_1305363000000436005" class="zsFontClass" value="提交">
+            <input type="button" class="zsFontClass" value="重置" onclick="zsResetWebForm('1305363000000436005')">
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td style="padding: 0px 5px;" align="left">
+            <div class="wb_FtCon wb_common">
+              <span>技術支援方：</span>
+              <a target="_blank" rel="noopener noreferrer" href="https://zoho.com/desk" class="wb_logoCon">
+                <img class="wb_logo" src="https://static.zohocdn.com/zohodeskstatic/app/images/portalLogo.de847024ebc0131731a3.png" alt="Zoho Desk"/>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>

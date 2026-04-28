@@ -5,86 +5,92 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>RMA Repair Request</title>
 
+  <!-- ===== 套用第二份程式碼的 WebUI 風格（卡片化 / 全寬輸入 / focus 高亮 / 主色提交）===== -->
   <style>
-    /* 基礎字體 */
     .zsFontClass{color:#000000;font-family:Arial;font-size:13px}
+    .wb_common{width:280px;}
+    .wb_FtCon{display:flex;align-items:center;justify-content:flex-end;margin-top:15px;padding-left:10px}
+    .wb_logoCon{display:flex;margin-left:5px}
+    .wb_logo{max-width:16px;max-height:16px;}
 
-    /* 表單卡片化（第二份風格） */
+    /* ✅ 外框卡片化（第二份風格） */
     #zohoSupportWebToCase .zsFormClass{
       max-width: 760px;
       margin: 24px auto;
-      background: #ffffff;
-      border: 1px solid #dcdcdc;
-      border-radius: 14px;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-      padding: 20px 22px 26px;
-      border-collapse: separate;
-      border-spacing: 0;
-      overflow: hidden;
-      width: 100%;
+      background:#fff;
+      border:1px solid #dcdcdc;
+      border-radius:14px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.08);
+      padding:20px 22px 26px;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      width:100%;
     }
 
-    /* 標題列 */
+    /* ✅ 標題列 */
     #zohoSupportWebToCase .zsFormClass tr:first-child td{
-      font-size: 20px;
-      font-weight: 700;
-      padding: 10px 5px 18px;
-      border-bottom: 2px solid #e6e6e6;
+      font-size:20px;
+      font-weight:700;
+      padding:10px 5px 18px;
+      border-bottom:2px solid #e6e6e6;
     }
 
-    /* 列距與對齊 */
-    #zohoSupportWebToCase td{padding: 12px 8px; vertical-align: top;}
+    /* ✅ 欄位間距 */
+    #zohoSupportWebToCase .zsFormClass tr td{
+      padding:12px 8px;
+      vertical-align:top;
+    }
 
-    /* 左側 label 欄 */
+    /* ✅ 左側標籤欄 */
     #zohoSupportWebToCase .zsFormClass td:first-child{
-      font-weight: 600;
-      color: #333;
-      padding-top: 18px;
-      width: 28%;
-      white-space: nowrap;
+      font-weight:600;
+      color:#333;
+      padding-top:18px;
+      width:28%;
+      white-space:nowrap;
     }
 
-    /* 欄位輸入：全寬一致化 */
+    /* ✅ Input / select / textarea 視覺一致化（第二份風格） */
     #zohoSupportWebToCase textarea,
     #zohoSupportWebToCase input[type="text"],
     #zohoSupportWebToCase input[type="date"],
     #zohoSupportWebToCase select{
-      width: 100%;
-      box-sizing: border-box;
-      padding: 8px 10px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid #cfcfcf;
-      transition: border-color .15s ease, box-shadow .15s ease;
-      background: #fff;
+      width:100%;
+      box-sizing:border-box;
+      padding:8px 10px;
+      font-size:14px;
+      border-radius:6px;
+      border:1px solid #cfcfcf;
+      transition:border-color .15s ease, box-shadow .15s ease;
+      background:#fff;
     }
     #zohoSupportWebToCase textarea{min-height:110px; resize:vertical;}
-    #zohoSupportWebToCase select{box-sizing: border-box;}
 
-    /* Focus 狀態 */
+    /* ✅ Focus 高亮 */
     #zohoSupportWebToCase input[type="text"]:focus,
     #zohoSupportWebToCase input[type="date"]:focus,
     #zohoSupportWebToCase textarea:focus,
     #zohoSupportWebToCase select:focus{
-      outline: none;
-      border-color: #2f7cf6;
-      box-shadow: 0 0 0 3px rgba(47,124,246,0.15);
+      outline:none;
+      border-color:#2f7cf6;
+      box-shadow:0 0 0 3px rgba(47,124,246,0.15);
     }
 
-    /* Mandatory 左紅線 + 星號 */
-    .manfieldbdr{border-left: 3px solid #ff6448!important}
+    /* ✅ 必填紅線 + 星號 */
+    .manfieldbdr{border-left:3px solid #ff6448!important}
     .wtcmanfield{color:#f00;font-size:16px;position:relative;top:2px;left:1px;}
 
-    /* 分隔線（第二份風格） */
+    /* ✅ 分隔線（第二份風格） */
     #zohoSupportWebToCase .section-divider td{padding:6px 8px;}
     #zohoSupportWebToCase .hr-line{
-      height: 1px;
+      height:1px;
       background: linear-gradient(to right, transparent, #dcdcdc, transparent);
       margin: 8px 0;
-      width: 100%;
+      width:100%;
     }
 
-    /* ===== Product Info（移植第二份的卡片 + 動態列樣式）===== */
+    /* ===== Product Info（第二份風格）===== */
     #zohoSupportWebToCase .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:6px;
       border-radius:8px;border:1px solid transparent;
@@ -118,7 +124,7 @@
       display:flex;justify-content:flex-start;align-items:center;margin:0 0 8px 0;
     }
     #zohoSupportWebToCase #prodRows{
-      display:flex;flex-direction:column;gap:10px;margin-top: 10px;
+      display:flex;flex-direction:column;gap:10px;margin-top:10px;
     }
     #zohoSupportWebToCase .prod-item{
       border:1px solid #e8e8e8;border-radius:10px;padding:10px 10px 12px;
@@ -143,71 +149,59 @@
       #zohoSupportWebToCase .prod-row{grid-template-columns: 34px 1fr 1fr;}
     }
 
-    /* 附件顯示（Zoho 既有 class） */
+    /* ===== 附件顯示（沿用 Zoho class）===== */
     .wtcuploadinput{cursor:pointer; float:left; width:62px; margin-top:-20px; opacity:0; clear:both;}
-    .wtcuploadfile{float:left;color:#00a3fe;cursor:pointer; user-select:none;}
+    .wtcuploadfile{float:left;color:#00a3fe;cursor:pointer;}
     .filenamecls{margin-right:15px; float:left; margin-top:5px;}
     .clboth{clear:both;}
     #zsFileBrowseAttachments{clear:both; margin:5px 0px 10px;}
 
-    /* 提交/重置：第二份風格（提交主色） */
+    /* ✅ 按鈕（第二份風格：提交主色、重置灰） */
     #zohoSupportWebToCase input[type="submit"]{
-      background: #2f7cf6;
-      color: #fff;
-      border: none;
-      padding: 10px 28px;
-      border-radius: 8px;
-      font-size: 14px;
+      background:#2f7cf6;
+      color:#fff;
+      border:none;
+      padding:10px 28px;
+      border-radius:8px;
+      font-size:14px;
       cursor:pointer;
       transition: all .15s ease;
-      margin-right: 10px;
     }
     #zohoSupportWebToCase input[type="submit"]:hover{background:#1f67e8;}
     #zohoSupportWebToCase input[type="button"]{
       color:#000;background:#fff;border:1px solid #d0d0d0;border-radius:8px;
       padding:10px 28px;font-size:14px;cursor:pointer;transition: all .15s ease;
+      margin-left:12px;
     }
     #zohoSupportWebToCase input[type="button"]:hover{background:#f5f5f5;border-color:#bdbdbd;}
 
-    /* Footer */
-    .wb_common{width: 280px;}
-    .wb_FtCon{display:flex;align-items:center;justify-content:flex-end;margin-top:15px;padding-left:10px}
-    .wb_logoCon{display:flex;margin-left:5px}
-    .wb_logo{max-width:16px;max-height:16px;}
-
     /* 行動裝置 */
     @media (max-width: 768px){
-      #zohoSupportWebToCase .zsFormClass{padding: 16px 14px;}
-      #zohoSupportWebToCase .zsFormClass td:first-child{
-        width: 100%;
-        padding-top: 10px;
-        white-space: normal;
-      }
+      #zohoSupportWebToCase .zsFormClass{padding:16px 14px;}
+      #zohoSupportWebToCase .zsFormClass td:first-child{width:100%;padding-top:10px;white-space:normal;}
     }
   </style>
 
   <script src="https://static.zohocdn.com/zohodeskstatic/app/js/jqueryandencoder.ef05974972bf3bca1b87.js"></script>
 
+  <!-- ===== 依第二份邏輯：附件 + Captcha + 必填驗證（並確保最後 return true）===== -->
   <script>
-    // ---- 基本設定（第一份 Form ID）----
     var FORM_ID   = "1305363000000436005";
     var FORM_NAME = "zsWebToCase_" + FORM_ID;
     var SUBMIT_ID = "zsSubmitButton_" + FORM_ID;
 
-    // 第一份必填欄位
     var zsWebFormMandatoryFields = ["Contact Name","Email","Subject"];
     var zsFieldsDisplayLabelArray = ["姓","郵件","主題"];
 
-    // 第一份的 Classification 原本有 dependent（但 map 是空），避免 error：保留 no-op
+    // 你第一份有 Classification onchange setDependent，但 dependent map 是空；這裡保留空函式避免錯誤
     function setDependent(){ /* no-op */ }
 
-    // encoder
     var ZSEncoder = {
       encodeForHTML : function(str){ if(str && typeof(str)==='string'){ return jQuery.encoder.encodeForHTML(str);} return str; },
       encodeForHTMLAttribute : function(str){ if(str && typeof(str)==='string'){ return jQuery.encoder.encodeForHTMLAttribute(str);} return str; }
     };
 
-    // ---- 附件控制 ----
+    // ---- 附件控制（最多 5 個、單檔 20MB、阻擋不支援副檔名）----
     var zsAttachedAttachmentsCount = 0;
     var zsAttachmentFileBrowserIdsList = [1,2,3,4,5];
 
@@ -216,7 +210,7 @@
     }
 
     function zsRearrangeFileBrowseAttachments(){
-      jQuery.each(jQuery('input[type = file]'), function(fileIndex, fileObject){
+      jQuery.each(jQuery('input[type = file]'), function(fileIndex){
         fileIndex = fileIndex + 1;
         if(fileIndex === zsAttachmentFileBrowserIdsList[0]) jQuery('#zsattachment_'+fileIndex).show();
         else jQuery('#zsattachment_'+fileIndex).hide();
@@ -237,8 +231,8 @@
 
     function zsRenderBrowseFileAttachment(zsAttachmentObject, zsAttachmentDetails){
       if(zsAttachmentObject !== ''){
-        // 20MB
-        if(zsAttachmentDetails.files && zsAttachmentDetails.files[0] && (zsAttachmentDetails.files[0].size/(1024*1024)) > 20){
+        if(zsAttachmentDetails.files && zsAttachmentDetails.files[0] &&
+           (zsAttachmentDetails.files[0].size/(1024*1024)) > 20){
           zsAttachmentDetails.value = '';
           alert('允許的檔大小上限為20MB。');
           return;
@@ -298,6 +292,7 @@
       jQuery('#zsCaptchaLoading').hide();
       jQuery('#zsCaptcha').show();
     }
+
     function zsRegenerateCaptcha(){
       var xhr = new XMLHttpRequest();
       xhr.open('GET','https://desk.zoho.com/support/GenerateCaptcha?action=getNewCaptcha&_=' + new Date().getTime(), true);
@@ -314,314 +309,50 @@
       xhr.send();
     }
 
-    // ---- ✅ Product Info 動態新增/刪除 + Submit 前彙整到 hidden Product_Details ----
-    (function(){
-      document.addEventListener('DOMContentLoaded', function(){
-        const form = document.getElementById('zsWebToCase_' + FORM_ID);
-        const prodRows = document.getElementById('prodRows');
-        const addRowBtn = document.getElementById('addRow');
-        const hidden = document.getElementById('Product_Details');
-        if(!form || !prodRows || !addRowBtn || !hidden) return;
+    // ---- ✅ Product Info：新增/刪除 + Qty 數字限制 + Submit 前彙整到 hidden Product_Details ----
+    function initProductInfo(){
+      const form = document.getElementById('zsWebToCase_' + FORM_ID);
+      const prodRows = document.getElementById('prodRows');
+      const addRowBtn = document.getElementById('addRow');
+      const hidden = document.getElementById('Product_Details');
+      if(!form || !prodRows || !addRowBtn || !hidden) return;
 
-        function digitsOnly(input){
-          input.value = input.value.replace(/[^\d]/g, '');
-        }
-        function getTemplateItem(){
-          return prodRows.querySelector('.prod-item');
-        }
+      function digitsOnly(input){ input.value = input.value.replace(/[^\d]/g, ''); }
+      function getTemplateItem(){ return prodRows.querySelector('.prod-item'); }
 
-        // 新增一筆（複製第一筆當 template）
-        addRowBtn.addEventListener('click', () => {
-          const tpl = getTemplateItem();
-          if(!tpl) return;
-          const clone = tpl.cloneNode(true);
-          clone.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
-          prodRows.appendChild(clone);
-        });
-
-        // 刪除一筆（至少留一筆）
-        prodRows.addEventListener('click', (e) => {
-          const btn = e.target.closest('.removeRow');
-          if(!btn) return;
-          const items = prodRows.querySelectorAll('.prod-item');
-          if(items.length <= 1) return;
-          const item = btn.closest('.prod-item');
-          if(item) item.remove();
-        });
-
-        // Qty 只允許數字
-        prodRows.addEventListener('input', (e) => {
-          if(e.target.classList.contains('p-qty')) digitsOnly(e.target);
-        });
-
-        // ✅ Submit 前彙整到 hidden（capture=true，確保最早寫入）
-        form.addEventListener('submit', () => {
-          const items = [...prodRows.querySelectorAll('.prod-item')];
-          const lines = items.map((item, idx) => {
-            const r = item.querySelector('.prod-row');
-            const model = r.querySelector('.p-model')?.value.trim() || '';
-            const sn    = r.querySelector('.p-sn')?.value.trim() || '';
-            const qty   = r.querySelector('.p-qty')?.value.trim() || '';
-            const fc    = r.querySelector('.p-fc')?.value.trim() || '';
-            if(!model && !sn && !qty && !fc) return null;
-            return [
-              `#${idx+1}`,
-              model ? `Model=${model}` : null,
-              sn    ? `SN=${sn}` : null,
-              qty   ? `Qty=${qty}` : null,
-              fc    ? `FailureCode=${fc}` : null
-            ].filter(Boolean).join(' ; ');
-          }).filter(Boolean);
-
-          hidden.value = lines.join('\n');
-        }, true);
+      addRowBtn.addEventListener('click', () => {
+        const tpl = getTemplateItem();
+        if(!tpl) return;
+        const clone = tpl.cloneNode(true);
+        clone.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
+        prodRows.appendChild(clone);
       });
-    })();
 
-    // ---- 驗證（最後一定要 return true）----
-    function zsValidateMandatoryFields(){
-      var form = document.forms[FORM_NAME];
+      prodRows.addEventListener('click', (e) => {
+        const btn = e.target.closest('.removeRow');
+        if(!btn) return;
+        const items = prodRows.querySelectorAll('.prod-item');
+        if(items.length <= 1) return;
+        const item = btn.closest('.prod-item');
+        if(item) item.remove();
+      });
 
-      for(var i=0; i<zsWebFormMandatoryFields.length; i++){
-        var fname = zsWebFormMandatoryFields[i];
-        var field = form[fname];
-        if(field){
-          var val = (field.value || '').replace(/^\s+|\s+$/g,'');
-          if(val.length === 0){
-            alert(zsFieldsDisplayLabelArray[i] + ' 不能為空');
-            field.focus();
-            return false;
-          }
-          if(field.name === 'Email'){
-            var emailOk = /^([\w_][\w\-_.+\'&]*)@(?=.{4,256}$)(([\w]+)([\-_]*[\w])*[\.])+[a-zA-Z]{2,22}$/.test(field.value);
-            if(!emailOk){
-              alert('輸入一個有效的郵箱Id');
-              field.focus();
-              return false;
-            }
-          }
-        }
-      }
+      prodRows.addEventListener('input', (e) => {
+        if(e.target.classList.contains('p-qty')) digitsOnly(e.target);
+      });
 
-      if((form['zsWebFormCaptchaWord'].value || '').replace(/^\s+|\s+$/g,'').length === 0){
-        alert('請輸入驗證碼。');
-        form['zsWebFormCaptchaWord'].focus();
-        return false;
-      }
-
-      document.getElementById(SUBMIT_ID).setAttribute('disabled', 'disabled');
-      return true;
-    }
-
-    // Reset
-    function zsResetWebForm(webFormId){
-      document.forms['zsWebToCase_'+webFormId].reset();
-      document.getElementById('zsSubmitButton_'+webFormId).removeAttribute('disabled');
-      zsAttachedAttachmentsCount = 0;
-      zsAttachmentFileBrowserIdsList = [1,2,3,4,5];
-      jQuery('#zsFileBrowseAttachments').html('');
-      zsRearrangeFileBrowseAttachments();
-      zsChangeMousePointer();
-      zsRegenerateCaptcha();
-      // 清空彙整欄位
-      var pd = document.getElementById('Product_Details');
-      if(pd) pd.value = '';
-    }
-
-    // 初始化
-    window.addEventListener('pageshow', function(){
-      var btn = document.getElementById(SUBMIT_ID);
-      if(btn) btn.removeAttribute('disabled');
-
-      var form = document.forms[FORM_NAME];
-      if(form && form['zsWebFormCaptchaWord'] && form['zsWebFormCaptchaWord'].value){
-        form['zsWebFormCaptchaWord'].value = '';
-      }
-
-      zsRegenerateCaptcha();
-      zsChangeMousePointer();
-    });
-
-    document.addEventListener('readystatechange', function(){
-      if(document.readyState === 'complete'){
-        zsRegenerateCaptcha();
-        zsChangeMousePointer();
-      }
-    });
-  </script>
-</head>
-
-<body>
-  <div id="zohoSupportWebToCase" align="center">
-    <form name="zsWebToCase_1305363000000436005"
-          id="zsWebToCase_1305363000000436005"
-          action="https://desk.zoho.com/support/WebToCase"
-          method="POST"
-          onsubmit="return zsValidateMandatoryFields()"
-          enctype="multipart/form-data">
-
-      <!-- 保留第一份原本 Token / 隱藏欄位 -->
-      <input type="hidden" name="xnQsjsdp" value="edbsn9ddadcf5aa44daf5a94dc7d86ce90a09"/>
-      <input type="hidden" name="xmIwtLD" value="edbsnd81512468af693ace8452788d781bf96dd51f491110329feba13be5038337d4d"/>
-      <input type="hidden" name="xJdfEaS" value=""/>
-      <input type="hidden" name="actionType" value="Q2FzZXM="/>
-      <input type="hidden" id="property(module)" value="Cases"/>
-      <input type="hidden" id="dependent_field_values_Cases" value="{&quot;JSON_VALUES&quot;:{},&quot;JSON_SELECT_VALUES&quot;:{},&quot;JSON_MAP_DEP_LABELS&quot;:[]}"/>
-      <input type="hidden" name="returnURL" value="https://miiscs.zohodesk.com/portal"/>
-
-      <table border="0" cellspacing="0" class="zsFormClass">
-        <tr>
-          <td colspan="2" class="zsFontClass"><strong>RMA Repair Request</strong></td>
-        </tr>
-
-        <tr>
-          <td class="zsFontClass" align="left">姓 <span class="wtcmanfield">*</span></td>
-          <td align="left">
-            <input type="text" maxlength="120" name="Contact Name" class="manfieldbdr"/>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="zsFontClass" align="left">郵件 <span class="wtcmanfield">*</span></td>
-          <td align="left">
-            <input type="text" maxlength="120" name="Email" value="" class="manfieldbdr"/>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="zsFontClass" align="left">主題 <span class="wtcmanfield">*</span></td>
-          <td align="left">
-            <input type="text" maxlength="255" name="Subject" value="" class="manfieldbdr"/>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="zsFontClass" align="left">分類</td>
-          <td align="left">
-            <select name="Classification" id="Classification" onchange="setDependent(this,false)">
-              <option value="">-None-</option>
-              <option value="Question">Question</option>
-              <option value="Problem">Problem</option>
-              <option value="Feature">Feature</option>
-              <option value="Others">Others</option>
-            </select>
-          </td>
-        </tr>
-
-        <!-- ✅ 新增：分隔線 -->
-        <tr class="section-divider">
-          <td colspan="2"><div class="hr-line"></div></td>
-        </tr>
-
-        <!-- ✅ 新增：Product Info（動態新增/刪除） -->
-        <tr>
-          <td class="zsFontClass" align="left"><label>Product Info</label></td>
-          <td align="left">
-            <div class="prod-toolbar">
-              <button type="button" id="addRow" class="btn btn-primary btn-sm">+ 新增一筆產品</button>
-            </div>
-
-            <div id="prodRows">
-              <div class="prod-item">
-                <div class="prod-row">
-                  <div class="prod-del">
-                    <button type="button" class="icon-btn removeRow" aria-label="刪除此筆" title="刪除">✕</button>
-                  </div>
-                  <div class="prod-field">
-                    <label>Model</label>
-                    <input type="text" class="p-model" maxlength="120"/>
-                  </div>
-                  <div class="prod-field">
-                    <label>SN</label>
-                    <input type="text" class="p-sn" maxlength="120"/>
-                  </div>
-                  <div class="prod-field">
-                    <label>Qty</label>
-                    <input type="text" class="p-qty" inputmode="numeric" pattern="[0-9]*" maxlength="10"/>
-                  </div>
-                  <div class="prod-field">
-                    <label>FailureCode</label>
-                    <input type="text" class="p-fc" maxlength="120"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ✅ 送到 Zoho 的彙整欄位（依第二份命名） -->
-            <textarea name="Product_Details" id="Product_Details" style="display:none;"></textarea>
-          </td>
-        </tr>
-
-        <!-- ✅ 原本：附件 -->
-        <tr>
-          <td class="zsFontClass" align="left">附件</td>
-          <td align="left">
-            <span class="zsFontClass wtcuploadfile" id="zsBrowseAttachment">附加檔</span>
-
-            <input class="wtcuploadinput" type="file" name="attachment_1" id="zsattachment_1"
-                   style="display:block;" onclick="zsOpenFileBrowseAttachment(event)"
-                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
-            <input class="wtcuploadinput" type="file" name="attachment_2" id="zsattachment_2"
-                   style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
-                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
-            <input class="wtcuploadinput" type="file" name="attachment_3" id="zsattachment_3"
-                   style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
-                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
-            <input class="wtcuploadinput" type="file" name="attachment_4" id="zsattachment_4"
-                   style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
-                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
-            <input class="wtcuploadinput" type="file" name="attachment_5" id="zsattachment_5"
-                   style="display:none;" onclick="zsOpenFileBrowseAttachment(event)"
-                   onchange="zsRenderBrowseFileAttachment(this.value, this)"/>
-
-            <div class="clboth"></div>
-            <span id="zsMaxSizeMessage" style="color:black;font-size: 12px;float:left;">
-              您每個檔的大小可高達20MB。
-            </span>
-            <span id="zsMaxLimitMessage" style="color:black;font-size: 12px;float:left;margin-left: 14px;display:none;">
-              您可以一次性地附加多達5 個檔。
-            </span>
-            <div id="zsFileBrowseAttachments"></div>
-          </td>
-        </tr>
-
-        <!-- ✅ 原本：驗證碼 -->
-        <tr>
-          <td class="zsFontClass" align="left">驗證碼 <span class="wtcmanfield">*</span></td>
-          <td>
-            <div id="zsCaptchaLoading"><strong>載入中...<br><br></strong></div>
-            <div id="zsCaptcha" style="display:none;">
-              <img src="#" id="zsCaptchaUrl" name="zsCaptchaImage" alt="captcha">
-              <a href="javascript:;" style="color:#00a3fe; cursor:pointer; margin-left:10px; vertical-align:middle;text-decoration:none;"
-                 class="zsFontClass" onclick="zsRegenerateCaptcha()">刷新</a>
-            </div>
-            <div>
-              <input type="text" name="zsWebFormCaptchaWord"/>
-              <input type="hidden" name="zsCaptchaSrc" value=""/>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2" align="center" style="padding-top:16px;">
-            <input type="submit" id="zsSubmitButton_1305363000000436005" class="zsFontClass" value="提交">
-            <input type="button" class="zsFontClass" value="重置" onclick="zsResetWebForm('1305363000000436005')">
-          </td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <td style="padding: 0px 5px;" align="left">
-            <div class="wb_FtCon wb_common">
-              <span>技術支援方：</span>
-              <a target="_blank" rel="noopener noreferrer" href="https://zoho.com/desk" class="wb_logoCon">
-                <img class="wb_logo" src="https://static.zohocdn.com/zohodeskstatic/app/images/portalLogo.de847024ebc0131731a3.png" alt="Zoho Desk"/>
-              </a>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </form>
-  </div>
-</body>
-</html>
+      // capture=true：確保在 onsubmit 驗證前就先寫入 hidden
+      form.addEventListener('submit', () => {
+        const items = [...prodRows.querySelectorAll('.prod-item')];
+        const lines = items.map((item, idx) => {
+          const r = item.querySelector('.prod-row');
+          const model = r.querySelector('.p-model')?.value.trim() || '';
+          const sn    = r.querySelector('.p-sn')?.value.trim() || '';
+          const qty   = r.querySelector('.p-qty')?.value.trim() || '';
+          const fc    = r.querySelector('.p-fc')?.value.trim() || '';
+          if(!model && !sn && !qty && !fc) return null;
+          return [
+            `#${idx+1}`,
+            model ? `Model=${model}` : null,
+            sn    ? `SN=${sn}` : null,
+            qty   ? `Qty=${qty}` : null,

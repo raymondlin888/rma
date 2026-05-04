@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zoho Desk ASAP on GitHub Pages</title>
+
+  <!-- Zoho Desk ASAP (GitHub Pages Friendly) -->
+  <script type="text/javascript" id="zohodeskasap">
+    (function () {
+      var d = document;
+      var s = d.createElement("script");
+      s.type = "text/javascript";
+      s.id = "zohodeskasapscript";
+      s.defer = true;
+
+      // ✅ GitHub Pages 不需要 CSP nonce，移除避免誤解/無效
+      // s.nonce = "{place_your_nonce_value_here}";
+
+      s.src = "https://desk.zoho.com/portal/api/web/asapApp/1305363000000517069?orgId=921814512";
+
+      var t = d.getElementsByTagName("script")[0];
+      t.parentNode.insertBefore(s, t);
+
+      window.ZohoDeskAsapReady = function (cb) {
+        var q = (window.ZohoDeskAsap__asyncalls = window.ZohoDeskAsap__asyncalls || []);
+        if (window.ZohoDeskAsapReadyStatus) {
+          cb && q.push(cb);
+          q.forEach(function (fn) { fn && fn(); });
+          window.ZohoDeskAsap__asyncalls = null;
+        } else {
+          cb && q.push(cb);
+        }
+      };
+    })();
+  </script>
+
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans TC", sans-serif; margin: 24px; }
+    code { background: #f4f4f4; padding: 2px 6px; border-radius: 6px; }
+    .hint { color: #555; line-height: 1.7; }
+    .box { background: #fafafa; border: 1px solid #eee; border-radius: 12px; padding: 16px; margin-top: 16px; }
+  </style>
+</head>
+
+<body>
+  <h1>Zoho Desk ASAP 測試頁（GitHub Pages）</h1>
+
+  <div class="box">
+    <p class="hint">
+      ✅ 若 ASAP 正常載入，通常會在右下角看到聊天/支援元件。<br>
+      🔧 若沒出現，請按 <code>F12 → Console</code> 查看是否有錯誤，或看下方「除錯清單」。
+    </p>
+  </div>
+
+  <script>
+    ZohoDeskAsapReady(function () {
+      console.log("[ASAP] ZohoDeskAsapReady fired (載入完成)");
+    });
+  </script>
+
+  <div class="box">
+    <h3>除錯清單（建議照順序）</h3>
+    <ol class="hint">
+      <li>確認 GitHub Pages 是用 <code>https://</code>（不要用 file:// 本機直接開）。</li>
+      <li>到 Zoho Desk → ASAP 設定，確認允許網域（Allowed Domains）包含：<code>https://&lt;你的帳號&gt;.github.io</code></li>
+      <li>若你用的是 repo pages：<code>https://&lt;你的帳號&gt;.github.io/&lt;repo&gt;/</code>，有些設定會要求加上完整路徑或至少域名。</li>
+      <li>確認 ASAP App ID（你這段是：<code>1305363000000517069</code>）對應的 App 已啟用。</li>
+      <li>Console 若出現 CORS/CSP/blocked，通常是網域白名單或瀏覽器擋第三方 cookie 的設定問題。</li>
+    </ol>
+  </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!-- ✅ Zoho WebToCase 表單（隱藏引擎） -->
+<form id="zohoForm"
+      class="zoho-engine"
+      action="https://desk.zoho.com/support/WebToCase"
+      method="POST"
+      enctype="multipart/form-data">
+
+  <!-- ✅ Zoho 驗證參數（不可修改） -->
+  <input type="hidden" name="xnQsjsdp" value="edbsn9ddadcf5aa44daf5a94dc7d86ce90a09" />
+  <input type="hidden" name="xmIwtLD" value="edbsnc2f8635ee4c97cc4cdc6b9174ecd749281e54080dc7e40c18f4d2dc0d7e12ed2" />
+  <input type="hidden" name="xJdfEaS" value="" />
+  <input type="hidden" name="actionType" value="Q2FzZXM=" />
+
+  <!-- ✅ 模組 -->
+  <input type="hidden" id="property(module)" value="Cases" />
+
+  <!-- ✅ 回傳 Zoho Portal（你指定的） -->
+  <input type="hidden"
+         name="returnURL"
+         value="https://miisrma.zohodesk.com/portal/" />
+
+  <!-- ✅ Zoho 欄位（名稱不可改） -->
+  <input type="text" name="Contact Name" id="z_name" />
+  <input type="text" name="Email" id="z_email" />
+  <input type="text" name="Subject" id="z_subject" />
+  <textarea name="Product_Details" id="z_details"></textarea>
+
+</form>
+
+
+<!-- ✅ 使用者實際看到的 UI -->
+<form id="uiForm">
+  <input id="ui_name" placeholder="姓名">
+  <input id="ui_email" placeholder="Email">
+  <input id="ui_subject" placeholder="主題">
+  <textarea id="ui_details" placeholder="內容"></textarea>
+
+  <button type="submit">送出</button>
+</form>
+
+
+<script>
+/**********************************************************************
+✅ 功能說明（重點）
+-----------------------------------------------------------------------
+1. 使用者填 UI 表單（uiForm）
+2. JS 把資料寫入 Zoho 表單（zohoForm）
+3. 提交 Zoho → 建立 Ticket
+4. 自動跳回 Zoho Portal（你設定的 returnURL）
+**********************************************************************/
+
+document.getElementById("uiForm").addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  // ✅ 取得 UI 值
+  const name = document.getElementById("ui_name").value;
+  const email = document.getElementById("ui_email").value;
+  const subject = document.getElementById("ui_subject").value;
+  const details = document.getElementById("ui_details").value;
+
+  // ✅ 填入 Zoho 表單（欄位名稱必須一致）
+  document.getElementById("z_name").value = name;
+  document.getElementById("z_email").value = email;
+  document.getElementById("z_subject").value = subject;
+  document.getElementById("z_details").value = details;
+
+  // ✅ 提交 Zoho 表單
+  document.getElementById("zohoForm").submit();
+
+});
+</script>
